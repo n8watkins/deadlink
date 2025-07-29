@@ -1,271 +1,252 @@
-# Dead Link Switchboard - Complete Project Overview
+# Dead Links Switchboard - Monorepo
 
-**Status:** MVP Complete with Critical Integration Gaps  
-**Backend:** ✅ 95% Complete | **Frontend Integration:** ❌ 25% Complete  
+**Status:** Refactored to Monorepo Structure  
+**Backend:** ✅ 95% Complete | **Frontend Integration:** ⚠️ In Progress  
 **Last Updated:** $(date)
 
-## 🏗️ Project Architecture
+## 🏗️ Monorepo Structure
 
-This is a **multi-component link management platform** with separate frontend and backend applications that need integration work.
+This project has been refactored into a monorepo containing all components:
 
-### Current Applications
-
-| Application | Purpose | Status | Primary Use |
-|------------|---------|--------|-------------|
-| **dead-link-switchboard-api** | Backend API | ✅ MVP Complete | Cloudflare Workers API |
-| **dead-link-app** | Main Business App | ⚠️ 30% Complete | Target Primary App |
-| **publisher-dashboard** | Technical Dashboard | ✅ 85% Complete | Current Working App |
-| **dead-link-switchboard-landing** | Marketing Site | ✅ Complete | Marketing Only |
-
-## 🚨 Critical Integration Issues
-
-### **The Main Problem**
-We have a **fully-featured backend API** but **fragmented frontends** that only use 25% of available features.
-
-### **Application Comparison**
-
-#### **dead-link-app** (Recommended Primary)
-```bash
-cd dead-link-app
-npm run dev  # Port 3000
+```
+deadlinks-switchboard/
+├── app/                         # Main dashboard application (Next.js)
+├── landing/                     # Marketing landing page (Next.js)
+├── api/                         # Backend API (Cloudflare Workers)
+├── plugin/                      # WordPress integration plugin
+├── docs/                        # Documentation
+└── scripts/                     # Build and deployment scripts
 ```
 
-**✅ Strengths:**
-- Professional marketing site with conversion-focused design
-- Complete authentication system (signup, signin, sessions)
-- Superior architecture with route groups
-- Business-ready branding and messaging
-- Modern tech stack (Next.js 15, Tailwind v4, Framer Motion)
+## ✅ **STRUCTURE COMPLETED**
 
-**❌ Critical Gaps:**
-- Dashboard pages are **completely empty** (links, analytics, settings)
-- Shows hardcoded "0" values instead of real data
-- Missing integration with MVP API endpoints
-- No access to new features (QR codes, bulk ops, GDPR, etc.)
+**Landing Page Resolution:**
+- **Primary Landing Page:** `landing/` - Complete marketing site with comprehensive components
+- **App Dashboard:** `app/` - Pure dashboard application (redundant marketing components removed)
+- **Clean Separation:** Landing page handles marketing, app handles authenticated dashboard experience
 
-#### **publisher-dashboard** (Currently Functional)
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm 8+
+
+### Installation
 ```bash
-cd publisher-dashboard
-npm run dev  # Port 3001
+# Install all dependencies across workspaces
+npm run install-all
+
+# Or just root dependencies
+npm install
 ```
 
-**✅ Strengths:**
-- Complete link management (create, edit, delete)
-- Rich analytics with charts and data visualization
-- Geographic data and bot detection
-- CSV export functionality
-- Real data integration
+### Development
 
-**❌ Limitations:**
-- No marketing presence (technical tool only)
-- Uses old API endpoints (missing new features)
-- Basic design (admin panel aesthetic)
-- API key auth only (no user accounts)
+```bash
+# Start the main dashboard app
+npm run dev:app
 
-## 🔧 Backend API Status
+# Start the landing page
+npm run dev:landing
 
-### **Fully Implemented MVP Features** ✅
+# Start the API (Cloudflare Workers)
+npm run dev:api
 
-The backend API (`dead-link-switchboard-api`) is **production-ready** with:
+# Start everything (default: main app)
+npm run dev
+```
+
+### Building
+
+```bash
+# Build all workspaces
+npm run build
+
+# Build specific components
+npm run build:app
+npm run build:landing
+```
+
+## 📁 Component Details
+
+### 🖥️ App (Publisher Dashboard)
+**Location:** `app/`
+
+The main dashboard application for authenticated users. Features:
+- Link management interface
+- Analytics dashboard with contrast accessibility testing
+- User authentication and session management
+- Real-time monitoring and health checks
+- Playwright-based accessibility testing
+
+**Tech Stack:** Next.js 15, React 19, TypeScript, Tailwind CSS, NextAuth, Playwright
+
+### 🌐 Landing Page
+**Location:** `landing/`
+
+Complete marketing website with comprehensive components. Features:
+- Hero section and product showcase
+- Features, pricing, and testimonials
+- FAQ and how-it-works sections
+- Footer with links and contact info
+- Responsive design and animations
+
+**Tech Stack:** Next.js, React, TypeScript, Tailwind CSS, Framer Motion
+
+### ⚡ API
+**Location:** `api/`
+
+Backend API built on Cloudflare Workers with MVP features complete:
 
 ```typescript
-// Core Features
+// Core Features - 95% Complete
 POST /api/v1/links              // Create links with custom slugs
 POST /api/v1/links/bulk         // Bulk operations (up to 100)
 GET  /api/v1/qr/:slug          // QR code generation
 PUT  /api/v1/links/:slug       // Link expiration settings
 
-// User Management
+// User Management - Complete
 POST /api/auth/reset-password   // Password reset flow
 GET  /api/user/data-export     // GDPR data export
 POST /api/user/delete-account  // GDPR data deletion
 GET  /api/user/usage           // Usage tracking & limits
-
-// Advanced Features
-POST /api/webhooks             // Webhook management
-GET  /api/keys                 // API key management
-GET  /api/health               // Health monitoring
 ```
 
-### **Security Features** 🔒
-- bcrypt password hashing (10 rounds)
-- CSRF protection on all endpoints
-- Rate limiting (5 login attempts/15 min)
-- Webhook HMAC signatures
-- Comprehensive error logging
-- Database backup/migration system
+**Tech Stack:** Cloudflare Workers, JavaScript, D1 Database
 
-## 📊 Integration Gaps Analysis
+### 🔌 WordPress Plugin
+**Location:** `plugin/`
 
-### **Features Backend Has But Frontend Missing**
+WordPress integration plugin. Features:
+- Easy link integration
+- Dashboard widgets
+- Automated dead link detection
+- Bulk operations
 
-| Feature | Backend API | dead-link-app | publisher-dashboard | Gap Impact |
-|---------|------------|---------------|-------------------|------------|
-| **Custom Slugs** | ✅ Complete | ❌ Missing | ❌ Missing | High |
-| **QR Codes** | ✅ Complete | ❌ Missing | ❌ Missing | High |
-| **Bulk Operations** | ✅ Complete | ❌ Missing | ❌ Missing | High |
-| **Link Expiration** | ✅ Complete | ❌ Missing | ❌ Missing | High |
-| **Usage Limits** | ✅ Complete | ❌ Missing | ❌ Missing | Critical |
-| **Password Reset** | ✅ Complete | ❌ Missing | ❌ Missing | Critical |
-| **GDPR Compliance** | ✅ Complete | ❌ Missing | ❌ Missing | Legal Risk |
-| **Webhooks** | ✅ Complete | ❌ Missing | ❌ Missing | Medium |
+**Tech Stack:** PHP, JavaScript, WordPress API
 
-### **Authentication Chaos** 🔥
+## 🔧 Development Workflow
 
-Currently have **3 different auth systems**:
-
-```typescript
-// Backend API (supports both)
-✅ Session-based auth with secure cookies
-✅ API key authentication with scoping
-
-// dead-link-app 
-✅ Uses session auth (good!)
-❌ Dashboard shows hardcoded data (bad!)
-
-// publisher-dashboard
-✅ Uses API key auth (works!)
-❌ Calls old endpoints (missing features!)
-```
-
-## 🎯 Recommended Solution
-
-### **Phase 1: Make dead-link-app the Primary App**
-
-**Why dead-link-app should win:**
-
-1. **🏢 Commercial Foundation**
-   - Professional marketing site drives sign-ups
-   - Business-focused messaging and pricing
-   - Complete user onboarding flow
-
-2. **🔧 Superior Architecture**
-   - Better code organization with route groups
-   - Scalable authentication system
-   - Modern tech stack ready for growth
-
-3. **👥 Target Market**
-   - Aims at business users (bigger market)
-   - Session-based auth (better UX)
-   - Revenue-focused value proposition
-
-### **Integration Roadmap**
-
-```mermaid
-graph TD
-    A[Current State] --> B[Fix dead-link-app]
-    B --> C[Port publisher-dashboard features]
-    C --> D[Connect MVP API]
-    D --> E[Unified Commercial App]
-    
-    A --> |Issue| F[3 Fragmented Apps]
-    A --> |Issue| G[25% Feature Usage]
-    A --> |Issue| H[Auth Confusion]
-```
-
-#### **Week 1: Critical Fixes**
-```bash
-# 1. Implement missing dashboard pages in dead-link-app
-touch dead-link-app/app/(dashboard)/links/page.tsx
-touch dead-link-app/app/(dashboard)/analytics/page.tsx  
-touch dead-link-app/app/(dashboard)/settings/page.tsx
-
-# 2. Connect real API data instead of hardcoded values
-# 3. Fix CORS for all frontend origins
-# 4. Standardize authentication
-```
-
-#### **Week 2: Feature Integration**
-```bash
-# 5. Port rich analytics from publisher-dashboard
-# 6. Add missing MVP features (QR codes, bulk ops, etc.)
-# 7. Implement password reset UI flow
-# 8. Add GDPR compliance features
-```
-
-#### **Week 3: Polish & Launch**
-```bash
-# 9. Unified design system
-# 10. Complete user experience testing
-# 11. Production deployment
-```
-
-## 🚀 Quick Start Guide
-
-### **For Development:**
+### Working with Workspaces
 
 ```bash
-# 1. Start Backend API
-cd dead-link-switchboard-api
-npm install
-wrangler dev  # Port 8787
+# Run commands in specific workspace
+npm run <command> --workspace=app/publisher-dashboard
 
-# 2. Start Primary Frontend (dead-link-app)
-cd dead-link-app  
-npm install
-npm run dev   # Port 3000
+# Install dependencies in specific workspace
+npm install <package> --workspace=app/publisher-dashboard
 
-# 3. Optional: Start Publisher Dashboard for reference
-cd publisher-dashboard
-npm install  
-npm run dev   # Port 3001
+# List all workspaces
+npm run workspaces list
 ```
 
-### **For Testing Current Functionality:**
+### Cross-Component Development
 
-- **Marketing & Auth**: http://localhost:3000 (dead-link-app)
-- **Working Dashboard**: http://localhost:3001 (publisher-dashboard) 
-- **API Health**: http://localhost:8787/health
-- **API Docs**: See `integrations_prog.md` for endpoint details
+When developing features that span multiple components:
 
-## 📁 Key Files to Understand
+1. Start relevant services:
+   ```bash
+   npm run dev:api    # Start API
+   npm run dev:app    # Start dashboard
+   npm run dev:landing # Start landing page
+   ```
 
-### **Backend API**
+2. Test integration points thoroughly
+
+## 🚨 Current Integration Issues
+
+### **Authentication Fragmentation** 
+Currently have multiple auth systems that need unification:
+- Session-based auth (recommended)
+- API key authentication
+- Different auth flows in different components
+
+### **Landing Page Architecture** ✅
+- Clean separation: `landing/` handles marketing, `app/` handles dashboard
+- No duplication: redundant marketing components removed from app
+- Unified user flow: landing → signup → dashboard
+
+### **Feature Gaps**
+75% of backend MVP features are not accessible through current frontends:
+- Custom slugs, QR codes, bulk operations missing from UI
+- GDPR compliance features not exposed
+- Usage limits and webhook management not implemented
+
+## 🧪 Testing
+
+The monorepo includes comprehensive testing:
+
+```bash
+# Run all tests
+npm test
+
+# Run accessibility tests (Playwright + Axe)
+npm run test:a11y --workspace=app/publisher-dashboard
+
+# Run contrast testing
+npx playwright test tests/accessibility.spec.ts --workspace=app/publisher-dashboard
 ```
-dead-link-switchboard-api/
-├── src/index-mvp.js           # Main API with all MVP features
-├── src/auth-endpoints-secure.js # Secure authentication 
-├── src/link-operations.js     # Custom slugs, bulk ops
-├── src/gdpr-compliance.js     # Data export/deletion
-├── migrations/003_mvp_features.sql # Database schema
-└── wrangler.toml             # Cloudflare Workers config
+
+### Accessibility Testing
+The dashboard includes Playwright-based accessibility testing with:
+- WCAG 2.1 AA compliance checking
+- Color contrast ratio validation
+- Dark mode contrast testing
+- Detailed contrast analysis tools
+
+## 🚢 Deployment
+
+### Individual Components
+
+```bash
+# Deploy API to Cloudflare
+npm run deploy:api
+
+# Build and prepare app for deployment
+npm run deploy:app
+
+# Build and prepare landing page
+npm run deploy:landing
 ```
 
-### **Frontend Apps**
-```
-dead-link-app/                 # TARGET: Primary commercial app
-├── app/(marketing)/          # Complete landing pages
-├── app/(auth)/              # Working authentication
-├── app/(dashboard)/         # ❌ EMPTY - needs implementation
-└── lib/auth.ts             # Robust auth system
+## 🛠️ Development Scripts
 
-publisher-dashboard/          # REFERENCE: Working features
-├── src/app/dashboard/       # Complete dashboard functionality  
-├── src/lib/api.ts          # API client (needs updating)
-└── src/components/         # Rich analytics components
+```bash
+npm run clean          # Clean all node_modules
+npm run install-all    # Install all dependencies
+npm run lint          # Lint all workspaces
+npm run format        # Format all code
+npm run type-check    # TypeScript checking
 ```
 
-## 🎯 Success Metrics
+## 🎯 Next Steps
 
-- [ ] **Single Primary App**: Users know which app to use
-- [ ] **100% Feature Access**: All backend features available in UI
-- [ ] **Unified Auth**: One authentication system across all apps
-- [ ] **Real Data**: No hardcoded values, all live API integration
-- [ ] **Commercial Ready**: Complete signup → dashboard → usage flow
+### **Phase 1: Landing Page Integration** (Current Priority)
+1. Analyze both landing page implementations
+2. Merge `landing/dead-link-switchboard-landing/` with `app/publisher-dashboard/marketing/`
+3. Create unified routing and user experience
+4. Remove duplicate components and code
 
-## 📋 Current Blockers
+### **Phase 2: Feature Integration**
+1. Connect all MVP API features to dashboard UI
+2. Implement missing features (QR codes, bulk ops, custom slugs)
+3. Add GDPR compliance interfaces
+4. Standardize authentication system
 
-1. **No Clear Primary App** - Users confused which to use
-2. **Missing Dashboard Pages** - dead-link-app dashboard is empty
-3. **API Integration Gaps** - Frontends not using MVP endpoints  
-4. **Authentication Fragmentation** - 3 different auth systems
-5. **Feature Disparity** - 75% of backend features inaccessible
+### **Phase 3: Production Ready**
+1. Complete testing across all components
+2. Finalize deployment configurations
+3. Production monitoring and health checks
+
+## 📚 Documentation
+
+- [Dashboard Guide](./docs/dashboard-guide.md)
+- [API Documentation](./api/dead-link-switchboard-api/README.md)
+- [WordPress Plugin Guide](./plugin/dead-link-wordpress-plugin/README.md)
+- [Deployment Guide](./DEPLOYMENT_READY.md)
+- [Integration Analysis](./integrations_prog.md)
 
 ---
 
-**Next Step:** Choose integration approach and begin implementing missing dashboard pages in dead-link-app
-
-**Estimated Integration Time:** 2-3 weeks  
-**Current Risk Level:** 🔴 High - Users cannot access most functionality
-
-**See `integrations_prog.md` for detailed technical analysis**
+**Current Risk Level:** 🟡 Medium - Monorepo structure created, integration work in progress  
+**Estimated Integration Time:** 1-2 weeks for landing page merge + feature integration
