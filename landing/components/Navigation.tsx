@@ -15,6 +15,26 @@ export default function Navigation() {
     { label: 'FAQ', href: '#faq' },
   ]
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const targetId = href.replace('#', '')
+    const targetElement = document.getElementById(targetId)
+    
+    if (targetElement) {
+      const navHeight = 64
+      const targetPosition = targetElement.offsetTop - navHeight
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      })
+    }
+    
+    if (isOpen) {
+      setIsOpen(false)
+    }
+  }
+
   return (
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,7 +49,8 @@ export default function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-700 hover:text-primary transition-colors"
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-gray-700 hover:text-primary transition-colors cursor-pointer"
               >
                 {item.label}
               </a>
@@ -57,8 +78,8 @@ export default function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
-                className="block px-3 py-2 text-gray-700 hover:text-primary"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="block px-3 py-2 text-gray-700 hover:text-primary cursor-pointer"
               >
                 {item.label}
               </a>

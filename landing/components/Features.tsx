@@ -9,74 +9,59 @@ import {
 const features = [
   {
     icon: Zap,
-    title: 'Automatic Detection',
-    description: 'Real-time monitoring identifies dead links instantly with zero manual effort required.',
+    title: 'Turn Dead Links Into Revenue',
+    description: 'Automatically detect broken links on your site and replace them with monetized alternatives that match your content.',
     highlight: true,
+    badge: 'Core Feature'
   },
   {
     icon: TrendingUp,
-    title: 'Smart Matching',
-    description: 'AI-powered algorithm matches dead links to the most relevant and profitable alternatives.',
+    title: 'Smart Fallback System',
+    description: 'Up to 3 backup URLs per link ensure visitors always land somewhere valuable when links break.',
     highlight: true,
-  },
-  {
-    icon: BarChart3,
-    title: 'Revenue Analytics',
-    description: 'Comprehensive dashboard tracks earnings, click-through rates, and optimization opportunities.',
-    highlight: false,
+    badge: 'Reliability'
   },
   {
     icon: Shield,
-    title: 'SEO Friendly',
-    description: 'Maintains SEO integrity with proper redirects and search engine compliance.',
+    title: 'Enterprise-Grade Security',
+    description: 'GDPR compliant, bot detection, rate limiting, and production-ready security features included.',
+    highlight: true,
+    badge: 'Enterprise'
+  },
+  {
+    icon: BarChart3,
+    title: 'Real-Time Analytics',
+    description: 'Track earnings, clicks, geographic data, and bot vs human traffic with live dashboard updates.',
     highlight: false,
   },
   {
     icon: Globe,
-    title: 'Multi-Language',
-    description: 'Works seamlessly across all languages and international markets.',
+    title: 'Global Edge Network',
+    description: 'Deployed on Cloudflare Workers for <100ms redirect speed worldwide.',
     highlight: false,
   },
   {
     icon: Code2,
-    title: 'Easy Integration',
-    description: 'Simple JavaScript snippet works with WordPress, Shopify, and any CMS.',
-    highlight: true,
-  },
-  {
-    icon: Smartphone,
-    title: 'Mobile Optimized',
-    description: 'Lightning-fast redirects optimized for mobile users and slow connections.',
-    highlight: false,
-  },
-  {
-    icon: Lock,
-    title: 'GDPR Compliant',
-    description: 'Full compliance with privacy regulations and transparent data handling.',
+    title: '5-Minute Setup',
+    description: 'Single JavaScript snippet works with any CMS - WordPress, Shopify, custom sites.',
     highlight: false,
   },
   {
     icon: Clock,
-    title: '24/7 Monitoring',
-    description: 'Continuous scanning ensures no dead link goes unmonetized.',
-    highlight: false,
-  },
-  {
-    icon: Users,
-    title: 'White Label',
-    description: 'Custom branding options for agencies and enterprise clients.',
-    highlight: false,
-  },
-  {
-    icon: CheckCircle2,
-    title: '99.9% Uptime',
-    description: 'Enterprise-grade infrastructure ensures reliable service.',
+    title: 'Automatic Health Checks',
+    description: 'Monitor link health every 5 minutes and auto-switch to working alternatives.',
     highlight: false,
   },
   {
     icon: Layers,
-    title: 'API Access',
-    description: 'Full API for custom integrations and advanced implementations.',
+    title: 'Developer-First API',
+    description: 'Complete REST API, webhooks, QR code generation, and bulk operations for power users.',
+    highlight: false,
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Zero Maintenance',
+    description: 'Set it and forget it - our system handles detection, switching, and optimization automatically.',
     highlight: false,
   },
 ]
@@ -92,10 +77,10 @@ export default function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Powerful Features for Maximum Revenue
+            Enterprise Features That Drive Revenue
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Everything you need to turn link rot into a profitable revenue stream
+            Turn your broken links into a reliable income stream with our automated detection and monetization system
           </p>
         </motion.div>
 
@@ -113,13 +98,13 @@ export default function Features() {
             >
               <div className={`h-full p-6 rounded-xl transition-all duration-300 ${
                 feature.highlight 
-                  ? 'bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20 hover:border-primary/40' 
+                  ? 'bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20 hover:border-primary/40 hover:shadow-xl' 
                   : 'bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg'
               }`}>
-                {feature.highlight && (
+                {feature.badge && (
                   <div className="absolute -top-3 -right-3">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                      Popular
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-white shadow-sm">
+                      {feature.badge}
                     </span>
                   </div>
                 )}
@@ -150,13 +135,13 @@ export default function Features() {
           className="mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white text-center"
         >
           <h3 className="text-2xl font-bold mb-4">
-            Ready to monetize your dead links?
+            Turn Your Dead Links Into Revenue
           </h3>
           <p className="text-lg mb-6 opacity-90">
-            Join thousands of publishers earning passive income from broken links
+            Enterprise-grade link management with automatic dead link detection and smart fallback system
           </p>
           <button className="bg-white text-primary hover:bg-gray-100 h-12 px-8 text-lg inline-flex items-center justify-center rounded-lg font-medium transition-colors">
-            Start Your Free Trial
+            Start Free - Setup in 5 Minutes
           </button>
         </motion.div>
       </div>
