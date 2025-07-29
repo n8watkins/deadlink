@@ -1,0 +1,10 @@
+{
+  "name": "deadlink-plugin-tests",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node test-js-snippet.js"
+  },
+  "devDependencies": {
+    "jsdom": "^22.0.0"
+  }
+}

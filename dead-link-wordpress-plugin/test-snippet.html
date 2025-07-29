@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DeadLink Snippet Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .product-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            text-decoration: none;
+            color: #333;
+            border-radius: 3px;
+        }
+        .product-link:hover {
+            background: #eaeaea;
+        }
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            background: #007cba;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005a87;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 3px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>DeadLink Snippet Test Page</h1>
+    
+    <div class="controls">
+        <h3>Configuration</h3>
+        <label>
+            API Key: 
+            <input type="text" id="api-key-input" placeholder="dl_your_api_key" value="dl_test123" style="width: 200px;">
+        </label>
+        <button onclick="updateConfig()">Update Config</button>
+        <button onclick="window.DeadLink.convertAll()">Convert All Links</button>
+        <button onclick="toggleDebug()">Toggle Debug</button>
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Product Links</h2>
+        <p>These links should be automatically converted to DeadLink URLs:</p>
+        
+        <a href="https://amazon.com/dp/B08XYZ123" class="product-link">
+            🛒 Amazon Product - Wireless Headphones
+        </a>
+        
+        <a href="https://walmart.com/ip/123456789" class="product-link">
+            🛒 Walmart Product - Smart TV
+        </a>
+        
+        <a href="https://target.com/p/laptop-stand/-/A-987654321" class="product-link">
+            🛒 Target Product - Laptop Stand
+        </a>
+        
+        <a href="https://bestbuy.com/site/gaming-mouse/6123456.p" class="product-link">
+            🛒 Best Buy Product - Gaming Mouse
+        </a>
+        
+        <a href="https://ebay.com/itm/vintage-camera/123456789" class="product-link">
+            🛒 eBay Product - Vintage Camera
+        </a>
+    </div>
+    
+    <div class="test-section">
+        <h2>Non-Product Links (Should Not Convert)</h2>
+        <p>These links should remain unchanged:</p>
+        
+        <a href="https://example.com/about" class="product-link">
+            📄 Example.com - About Page
+        </a>
+        
+        <a href="https://google.com/search?q=test" class="product-link">
+            🔍 Google Search
+        </a>
+        
+        <a href="https://github.com/user/repo" class="product-link">
+            💻 GitHub Repository
+        </a>
+    </div>
+    
+    <div class="test-section">
+        <h2>Dynamic Content Test</h2>
+        <p>Add new product links dynamically:</p>
+        <button onclick="addDynamicLink()">Add Amazon Link</button>
+        <button onclick="addDynamicLink('walmart')">Add Walmart Link</button>
+        <div id="dynamic-links"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Conversion Log</h2>
+        <div id="conversion-log" style="max-height: 200px; overflow-y: auto; background: #f9f9f9; padding: 10px; font-family: monospace; font-size: 12px;"></div>
+    </div>
+    
+    <!-- Load the DeadLink snippet -->
+    <script src="assets/deadlink-snippet.js"></script>
+    
+    <script>
+        // Configure the snippet
+        window.addEventListener('DOMContentLoaded', function() {
+            // Set initial configuration
+            if (window.DeadLink) {
+                window.DeadLink.config.apiKey = 'dl_test123';
+                window.DeadLink.config.debug = true;
+                
+                // Override console.log to show in our log
+                const originalLog = console.log;
+                const originalError = console.error;
+                const logElement = document.getElementById('conversion-log');
+                
+                function addToLog(message, type = 'info') {
+                    const timestamp = new Date().toLocaleTimeString();
+                    const logEntry = document.createElement('div');
+                    logEntry.style.color = type === 'error' ? 'red' : type === 'success' ? 'green' : 'black';
+                    logEntry.textContent = `[${timestamp}] ${message}`;
+                    logElement.appendChild(logEntry);
+                    logElement.scrollTop = logElement.scrollHeight;
+                }
+                
+                console.log = function(...args) {
+                    originalLog.apply(console, args);
+                    addToLog(args.join(' '));
+                };
+                
+                console.error = function(...args) {
+                    originalError.apply(console, args);
+                    addToLog(args.join(' '), 'error');
+                };
+                
+                addToLog('DeadLink snippet loaded and configured');
+            }
+        });
+        
+        function updateConfig() {
+            const apiKey = document.getElementById('api-key-input').value;
+            const status = document.getElementById('status');
+            
+            if (!apiKey) {
+                showStatus('Please enter an API key', 'error');
+                return;
+            }
+            
+            if (window.DeadLink) {
+                window.DeadLink.config.apiKey = apiKey;
+                showStatus('Configuration updated successfully', 'success');
+                console.log('API key updated to:', apiKey);
+            } else {
+                showStatus('DeadLink not loaded yet', 'error');
+            }
+        }
+        
+        function toggleDebug() {
+            if (window.DeadLink) {
+                window.DeadLink.config.debug = !window.DeadLink.config.debug;
+                showStatus(`Debug mode: ${window.DeadLink.config.debug ? 'ON' : 'OFF'}`, 'success');
+                console.log('Debug mode toggled:', window.DeadLink.config.debug);
+            }
+        }
+        
+        function addDynamicLink(store = 'amazon') {
+            const container = document.getElementById('dynamic-links');
+            const link = document.createElement('a');
+            const timestamp = Date.now();
+            
+            if (store === 'walmart') {
+                link.href = `https://walmart.com/ip/dynamic-product-${timestamp}`;
+                link.textContent = `🛒 Dynamic Walmart Product ${timestamp}`;
+            } else {
+                link.href = `https://amazon.com/dp/B${timestamp.toString().substr(-8)}`;
+                link.textContent = `🛒 Dynamic Amazon Product ${timestamp}`;
+            }
+            
+            link.className = 'product-link';
+            link.style.display = 'block';
+            link.style.margin = '5px 0';
+            
+            container.appendChild(link);
+            
+            // Convert the new link
+            if (window.DeadLink) {
+                window.DeadLink.convertLink(link);
+            }
+            
+            console.log('Added dynamic link:', link.href);
+        }
+        
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Monitor link conversions
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
+                        const link = mutation.target;
+                        if (link.classList.contains('deadlink-converted')) {
+                            console.log('Link converted:', mutation.target.getAttribute('data-deadlink-original'), '->', mutation.target.href);
+                        }
+                    }
+                });
+            });
+            
+            // Observe all links for href changes
+            document.querySelectorAll('a').forEach(function(link) {
+                observer.observe(link, { attributes: true, attributeFilter: ['href'] });
+            });
+        });
+    </script>
+</body>
+</html>

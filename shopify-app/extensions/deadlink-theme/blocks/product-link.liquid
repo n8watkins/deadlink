@@ -1,0 +1,131 @@
+{%- comment -%}
+DeadLink Product Link Block
+Automatically converts product links to DeadLink URLs
+{%- endcomment -%}
+
+<script>
+  (function() {
+    const DEADLINK_CONFIG = {
+      apiKey: '{{ block.settings.api_key }}',
+      apiUrl: '{{ block.settings.api_url | default: "https://api.deadlink.io" }}',
+      enabled: {{ block.settings.enabled | default: true }},
+      debug: {{ block.settings.debug | default: false }}
+    };
+
+    if (!DEADLINK_CONFIG.enabled || !DEADLINK_CONFIG.apiKey) {
+      return;
+    }
+
+    // Convert product links in this block
+    function convertProductLinks() {
+      const productLinks = document.querySelectorAll('[data-deadlink-convert] a[href*="shopify.com/products"]');
+      
+      productLinks.forEach(async (link) => {
+        const originalUrl = link.getAttribute('href');
+        
+        try {
+          const response = await fetch(`${DEADLINK_CONFIG.apiUrl}/api/v1/links`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-API-Key': DEADLINK_CONFIG.apiKey
+            },
+            body: JSON.stringify({
+              url: originalUrl,
+              fallback_urls: generateFallbacks(originalUrl)
+            })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            link.setAttribute('href', data.short_url);
+            link.classList.add('deadlink-converted');
+            
+            if (DEADLINK_CONFIG.debug) {
+              console.log('DeadLink: Converted', originalUrl, '->', data.short_url);
+            }
+          }
+        } catch (error) {
+          if (DEADLINK_CONFIG.debug) {
+            console.error('DeadLink conversion failed:', error);
+          }
+        }
+      });
+    }
+
+    function generateFallbacks(url) {
+      const fallbacks = [];
+      
+      try {
+        const urlObj = new URL(url);
+        const shopDomain = `${urlObj.protocol}//${urlObj.hostname}`;
+        
+        // Add collection page as fallback
+        const pathParts = urlObj.pathname.split('/');
+        if (pathParts.includes('products')) {
+          const productIndex = pathParts.indexOf('products');
+          if (productIndex > 1) {
+            const collectionPath = pathParts.slice(0, productIndex).join('/');
+            fallbacks.push(`${shopDomain}${collectionPath}`);
+          }
+        }
+        
+        // Add shop homepage
+        fallbacks.push(shopDomain);
+      } catch (e) {
+        // Ignore URL parsing errors
+      }
+      
+      return fallbacks;
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', convertProductLinks);
+    } else {
+      convertProductLinks();
+    }
+  })();
+</script>
+
+<div data-deadlink-convert>
+  {{ block.settings.content }}
+</div>
+
+{% schema %}
+{
+  "name": "DeadLink Product Links",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_key",
+      "label": "DeadLink API Key",
+      "info": "Your DeadLink API key from the dashboard"
+    },
+    {
+      "type": "url",
+      "id": "api_url",
+      "label": "API URL",
+      "default": "https://api.deadlink.io"
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable DeadLink conversion",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "debug",
+      "label": "Debug mode",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content with product links"
+    }
+  ]
+}
+{% endschema %}
