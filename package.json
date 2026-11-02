@@ -1,50 +1,17 @@
 {
-  "name": "deadlinks-switchboard-monorepo",
-  "version": "1.0.0",
+  "name": "deadlink",
+  "version": "0.0.0",
   "private": true,
-  "description": "Dead Links Switchboard - A comprehensive link management and redirect service",
-  "workspaces": [
-    "app",
-    "landing",
-    "api",
-    "plugin"
-  ],
+  "description": "deadlink: the open-source 404 safety net. Relaunch concept; the landing page lives in landing/.",
   "scripts": {
-    "dev": "npm run dev --workspace=app",
-    "dev:app": "npm run dev --workspace=app",
-    "dev:landing": "npm run dev --workspace=landing",
-    "dev:api": "npm run dev --workspace=api",
-    "build": "npm run build --workspaces --if-present",
-    "build:app": "npm run build --workspace=app",
-    "build:landing": "npm run build --workspace=landing",
-    "test": "npm run test --workspaces --if-present",
-    "test:app": "npm run test --workspace=app",
-    "lint": "npm run lint --workspaces --if-present",
-    "clean": "rm -rf node_modules app/node_modules landing/node_modules api/node_modules plugin/node_modules",
-    "install-all": "npm install && npm install --workspaces",
-    "deploy:api": "npm run deploy --workspace=api",
-    "deploy:app": "npm run build --workspace=app && npm run export --workspace=app",
-    "deploy:landing": "npm run build --workspace=landing"
-  },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "dev": "npm --prefix landing run dev",
+    "build": "npm --prefix landing run build",
+    "start": "npm --prefix landing run start",
+    "lint": "npm --prefix landing run lint",
+    "typecheck": "npm --prefix landing run typecheck"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=20.9.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yourusername/deadlinks-switchboard.git"
-  },
-  "keywords": [
-    "link-management",
-    "redirect-service",
-    "analytics",
-    "wordpress-plugin",
-    "nextjs",
-    "cloudflare-workers"
-  ],
-  "author": "Your Name",
-  "license": "MIT"
+  "license": "AGPL-3.0-only"
 }

@@ -1,106 +1,65 @@
-'use client'
+import Link from "next/link";
+import { Logo } from "./Logo";
 
-import { Link2Off, Twitter, Linkedin, Github, Mail } from 'lucide-react'
+const groups = [
+  {
+    title: "Product",
+    links: [
+      { href: "/#how-it-works", label: "How it works" },
+      { href: "/#features", label: "Features" },
+      { href: "/#pricing", label: "Pricing" },
+      { href: "/#early-access", label: "Early access" },
+    ],
+  },
+  {
+    title: "Learn",
+    links: [
+      { href: "/#open-source", label: "Open source and self-host" },
+      { href: "/#compare", label: "Compare with Oh Dear and Dub" },
+      { href: "/#faq", label: "FAQ" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
+    ],
+  },
+];
 
-const footerLinks = {
-  Product: [
-    { label: 'How it Works', href: '#how-it-works' },
-    { label: 'Features', href: '#features' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'API Documentation', href: '#' },
-  ],
-  Company: [
-    { label: 'About Us', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'Careers', href: '#' },
-    { label: 'Contact', href: '#' },
-  ],
-  Resources: [
-    { label: 'Documentation', href: '#' },
-    { label: 'Support Center', href: '#' },
-    { label: 'Status Page', href: '#' },
-    { label: 'Changelog', href: '#' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Cookie Policy', href: '#' },
-    { label: 'GDPR', href: '#' },
-  ],
-}
-
-const socialLinks = [
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Mail, href: '#', label: 'Email' },
-]
-
-export default function Footer() {
+export function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
-          <div className="lg:col-span-2">
-            <div className="flex items-center mb-4">
-              <Link2Off className="h-8 w-8 text-white mr-2" />
-              <span className="text-xl font-bold text-white">Switchboard</span>
-            </div>
-            <p className="text-gray-400 mb-6 max-w-xs">
-              Turn dead links into revenue streams with our AI-powered monetization platform.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
+    <footer className="border-t border-line">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="max-w-xs">
+          <Link href="/" className="rounded-lg" aria-label="deadlink home">
+            <Logo />
+          </Link>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The open-source 404 safety net. In development: source code will be published under AGPL-3.0 with the self-host release.
+          </p>
+        </div>
+        {groups.map((g) => (
+          <div key={g.title}>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">{g.title}</h2>
+            <ul className="mt-3 space-y-2">
+              {g.links.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-ink/85 hover:text-ink hover:underline hover:underline-offset-4">
+                    {l.label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="text-white font-semibold mb-4">{category}</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 mb-4 md:mb-0">
-              © 2024 Switchboard. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-6">
-              <a href="#" className="hover:text-white transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Terms
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Cookies
-              </a>
-            </div>
-          </div>
-        </div>
+        ))}
+      </div>
+      <div className="border-t border-line">
+        <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-muted sm:px-6">
+          deadlink is a working name for a product in development. Competitor details on this page come from their public pricing pages, checked 1 November 2026.
+        </p>
       </div>
     </footer>
-  )
+  );
 }

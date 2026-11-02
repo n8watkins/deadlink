@@ -1,28 +1,52 @@
-'use client'
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
+import { Compare, EarlyAccess, FAQ, Features, Hero, HowItWorks, OpenSource, Pricing, Scanner } from "@/components/sections";
+import { faqs } from "@/lib/content";
+import { site } from "@/lib/site";
 
-import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Link2Off, DollarSign, TrendingUp, Shield, Zap, BarChart3 } from 'lucide-react'
-import { Button } from '@/components/Button'
-import Hero from '@/components/Hero'
-import HowItWorks from '@/components/HowItWorks'
-import Features from '@/components/Features'
-import Pricing from '@/components/Pricing'
-import Testimonials from '@/components/Testimonials'
-import FAQ from '@/components/FAQ'
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      name: site.name,
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "Web, Cloudflare Workers",
+      description: site.description,
+      url: site.url,
+      license: "https://www.gnu.org/licenses/agpl-3.0.html",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
+};
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <Navigation />
-      <Hero />
-      <HowItWorks />
-      <Features />
-      <Pricing />
-      <Testimonials />
-      <FAQ />
+    <>
+      <Nav />
+      <main id="main">
+        <Hero />
+        <HowItWorks />
+        <Features />
+        <Scanner />
+        <OpenSource />
+        <Compare />
+        <Pricing />
+        <FAQ />
+        <EarlyAccess />
+      </main>
       <Footer />
-    </main>
-  )
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+    </>
+  );
 }

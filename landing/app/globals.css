@@ -1,18 +1,161 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
+:root {
+  --bg: #f6f4ee;
+  --bg-sunk: #eeebe2;
+  --surface: #ffffff;
+  --ink: #17161b;
+  --muted: #5a5764;
+  --line: #e1ddd2;
+  --line-strong: #cbc6b8;
+  --accent: #c2410c;
+  --accent-soft: #fde7d9;
+  --broken: #c42b30;
+  --broken-soft: #fbe3e3;
+  --fixed: #0f7a55;
+  --fixed-soft: #dcf3e8;
+  --pending: #8a5a00;
+  --pending-soft: #fbf0d5;
+  --code-bg: #17161b;
+  --code-ink: #ece9e2;
+  --code-muted: #9a97a3;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --bg: #0f0f12;
+    --bg-sunk: #0a0a0c;
+    --surface: #18181d;
+    --ink: #f1efe9;
+    --muted: #a6a3ae;
+    --line: #2a2a31;
+    --line-strong: #3a3a43;
+    --accent: #ff8a4c;
+    --accent-soft: #3a2116;
+    --broken: #ff6b70;
+    --broken-soft: #3a1b1d;
+    --fixed: #45d39c;
+    --fixed-soft: #12302a;
+    --pending: #f2c45a;
+    --pending-soft: #362c14;
+    --code-bg: #0a0a0c;
+    --code-ink: #ece9e2;
+    --code-muted: #8d8a96;
+    color-scheme: dark;
   }
+}
 
-  * {
-    @apply border-gray-200;
-  }
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-sunk: var(--bg-sunk);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-broken: var(--broken);
+  --color-broken-soft: var(--broken-soft);
+  --color-fixed: var(--fixed);
+  --color-fixed-soft: var(--fixed-soft);
+  --color-pending: var(--pending);
+  --color-pending-soft: var(--pending-soft);
+  --color-code-bg: var(--code-bg);
+  --color-code-ink: var(--code-ink);
+  --color-code-muted: var(--code-muted);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
-  body {
-    @apply bg-white text-gray-900;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Hero demo: staged reveal, only once JavaScript marks the demo as animated. */
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.demo[data-animate="true"] .demo-stage {
+  opacity: 0;
+  animation: stage-in 420ms ease-out forwards;
+}
+
+.demo[data-animate="true"] .demo-stage[data-stage="1"] {
+  animation-delay: 150ms;
+}
+.demo[data-animate="true"] .demo-stage[data-stage="2"] {
+  animation-delay: 1250ms;
+}
+.demo[data-animate="true"] .demo-stage[data-stage="3"] {
+  animation-delay: 2600ms;
+}
+.demo[data-animate="true"] .demo-stage[data-stage="4"] {
+  animation-delay: 3700ms;
+}
+
+@keyframes scan {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.demo[data-animate="true"] .demo-scan {
+  transform-origin: left;
+  animation: scan 1100ms ease-in-out 1250ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo[data-animate="true"] .demo-stage,
+  .demo[data-animate="true"] .demo-scan {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 70%);
 }
