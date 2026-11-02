@@ -16,7 +16,9 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_DIR="/home/natkins/mcp-testing/dead-link-switchboard-api"
+# The Worker API lives in api/ next to this script; override with PROJECT_DIR=/path.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="${PROJECT_DIR:-$SCRIPT_DIR/api}"
 ENVIRONMENT=${1:-production}
 
 log() {
