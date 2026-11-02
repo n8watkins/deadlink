@@ -5,6 +5,13 @@ It is a fully static Next.js export (`output: "export"`) served by Cloudflare Wo
 The Worker is `relink-landing` in the owner's Cloudflare account, and `wrangler.jsonc` attaches `relink.n8builds.dev` as a Workers custom domain, so Cloudflare creates and manages the DNS record itself.
 Security and cache headers live in `public/_headers`.
 
+## Owner decision: Cloudflare Web Analytics (2026-11-01)
+
+The owner wants Cloudflare Web Analytics on the n8builds.dev subdomains.
+The zone injects the cookieless beacon (`static.cloudflareinsights.com/beacon.min.js`) into every HTML page at the edge, so the page code does not load it.
+Never add `no-transform` to `Cache-Control` in `public/_headers`, because that stops the injection.
+The privacy page and any trust copy must say the site uses Cloudflare Web Analytics, which is cookieless, does not store IP addresses and counts visits without tracking anyone.
+
 ## Redeploy
 
 Log in once with `npx wrangler login` (check with `npx wrangler whoami`).

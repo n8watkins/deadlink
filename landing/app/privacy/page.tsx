@@ -16,9 +16,17 @@ export default function PrivacyPage() {
       </p>
       <h2>What this website collects</h2>
       <ul>
-        <li>No cookies and no analytics or advertising trackers.</li>
+        <li>No cookies and no advertising trackers.</li>
+        <li>
+          This website uses Cloudflare Web Analytics, which is cookieless and counts visits without tracking you. It records page views,
+          referrers and browser, device and country information, does not store IP addresses and does not fingerprint visitors.
+        </li>
         <li>No forms: this website does not collect email addresses or any other details you type.</li>
         <li>Our hosting provider may keep standard server logs (such as IP address and user agent) for security, for a short period.</li>
+      </ul>
+      <h2>Who processes this data</h2>
+      <ul>
+        <li>Cloudflare hosts this website and provides Cloudflare Web Analytics.</li>
       </ul>
       <h2>The waitlist</h2>
       <p>
