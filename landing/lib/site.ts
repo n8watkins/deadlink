@@ -1,12 +1,12 @@
 /**
  * Site-wide settings. Relink is the working product name (fallbacks are
- * listed in docs/PRODUCT.md section 6). getrelink.dev is a placeholder canonical URL:
- * the domain looked available on 2026-11-01 but is not registered yet, so
- * NEXT_PUBLIC_SITE_URL can override it at build time.
+ * listed in docs/PRODUCT.md section 6). The site is live at
+ * https://relink.n8builds.dev until Relink gets its own domain;
+ * NEXT_PUBLIC_SITE_URL can override the canonical URL at build time.
  */
 export const site = {
   name: "Relink",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://getrelink.dev").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://relink.n8builds.dev").replace(/\/$/, ""),
   title: "Relink: the open-source 404 safety net",
   description:
     "Relink catches broken links the moment a visitor hits them, sends them to the page they meant using your own content, and turns each fix into a permanent redirect with one click. Open source and self-hostable on Cloudflare.",

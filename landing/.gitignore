@@ -4,3 +4,7 @@ out/
 next-env.d.ts
 *.tsbuildinfo
 .env*.local
+
+# Root .gitignore ignores public/; this app needs it (static assets and _headers).
+!public/
+.wrangler/

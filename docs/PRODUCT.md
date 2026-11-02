@@ -213,13 +213,13 @@ The repository and folder keep the name `deadlink` either way.
 | getrelink.dev | Looked available, unconfirmed, not registered |
 | relink.so | Looked available, unconfirmed, not registered |
 
-The landing page uses `https://getrelink.dev` as a placeholder canonical URL (overridable with `NEXT_PUBLIC_SITE_URL`).
-The domain is not registered yet; register it, or pick another, before any public launch.
+The landing page is live at https://relink.n8builds.dev; own domain later.
+`getrelink.dev` is not registered yet; register it, or pick another, before the public launch, then move the canonical URL (`NEXT_PUBLIC_SITE_URL` or `landing/lib/site.ts`).
 
 ### Other name checks still to do
 
 - Trademark search for "Relink" in software classes (US and EU) before the hosted beta.
-- The npm package `relink` is taken by an unrelated package (described as "ReLink"), so the planned setup CLI is `npx getrelink init`, matching the placeholder domain.
+- The npm package `relink` is taken by an unrelated package (described as "ReLink"), so the planned setup CLI is `npx getrelink init`, matching the candidate domain `getrelink.dev`.
 
 ## 7. Principles
 

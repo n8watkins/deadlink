@@ -2,13 +2,17 @@
 
 Marketing page for Relink, the open-source 404 safety net (formerly the deadlink concept).
 Next.js 16.4 (App Router, Turbopack), Tailwind CSS 4, no client-side analytics.
+Live at https://relink.n8builds.dev; own domain later.
+It is a fully static export served by Cloudflare Workers static assets; see `DEPLOY.md`.
 
 ## Run
 
 ```bash
 npm install
 npm run dev            # http://localhost:3000
-npm run build && npm start   # production build
+npm run build          # static export to out/
+npm run preview        # serve out/ with the Workers runtime
+npm run deploy         # build and deploy to relink.n8builds.dev
 npm run lint && npm run typecheck
 ```
 
@@ -16,7 +20,7 @@ npm run lint && npm run typecheck
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and robots. Defaults to `https://getrelink.dev`, which is a placeholder: the domain looked available on 2026-11-01 but is not registered yet. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and robots. Defaults to `https://relink.n8builds.dev`, the live URL until Relink gets its own domain. |
 
 ## Waitlist
 

@@ -13,6 +13,7 @@ Platform limits and prices quoted below must be re-checked against Cloudflare's 
 | 2026-11-01 | The product's working name is **Relink** ("for now"). It replaced Rewire, chosen earlier the same day; the previous candidates stay as fallbacks in order: Rewire, then deadlink. `https://getrelink.dev` is the placeholder canonical URL; it looked available but is not registered yet. The setup CLI is planned as `npx getrelink init` because the npm package `relink` is taken. |
 | 2026-11-01 | **The self-host release (M2) comes before the hosted beta (M3).** This is confirmed and no longer an open question. |
 | 2026-11-01 | The waitlist lives on n8builds.dev (`https://n8builds.dev/upcoming?interest=relink#relink`), where the owner builds in public; the landing page has no sign-up form of its own. |
+| 2026-11-01 | The landing page is live at `https://relink.n8builds.dev` (static export on Cloudflare Workers static assets); own domain later. It replaces `getrelink.dev` as the canonical URL until a domain is registered. |
 
 ## 1. Architecture
 

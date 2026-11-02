@@ -1,5 +1,8 @@
 import { ImageResponse } from "next/og";
 
+// Rendered once at build time for the static export.
+export const dynamic = "force-static";
+
 export const alt = "Relink: catch every 404 and send visitors where they meant to go";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

@@ -45,7 +45,8 @@ npm run lint
 Screenshots: [desktop](docs/screenshots/landing-desktop-fold.png), [desktop full page](docs/screenshots/landing-desktop-full.png), [desktop dark](docs/screenshots/landing-desktop-dark-fold.png), [mobile](docs/screenshots/landing-mobile-fold.png), [404 page](docs/screenshots/landing-mobile-404.png).
 
 There is no sign-up form on the landing page: every waitlist call to action links to [n8builds.dev/upcoming](https://n8builds.dev/upcoming?interest=relink#relink), where the owner builds in public.
-The placeholder canonical URL is `https://getrelink.dev`, which is not registered yet.
+The landing page is live at https://relink.n8builds.dev; own domain later (`getrelink.dev` is a candidate, not registered yet).
+Redeploy and rollback steps are in [`landing/DEPLOY.md`](landing/DEPLOY.md).
 See [`landing/README.md`](landing/README.md).
 
 ## Legacy code (reference only)
