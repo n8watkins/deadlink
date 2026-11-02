@@ -26,10 +26,10 @@
     "eslint-config-next": "16.4.3",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
-    "wrangler": "^4.151.3"
+    "wrangler": "^4.156.2"
   },
   "allowScripts": {
-    "workerd@1.20261019.1": true,
-    "esbuild@0.28.2": true
+    "esbuild@0.28.2": true,
+    "workerd@1.20261102.1": true
   }
 }
