@@ -22,6 +22,8 @@ npm run lint && npm run typecheck
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and robots. Defaults to `https://relink.n8builds.dev`, the live URL until Relink gets its own domain. |
 
+Copy [`.env.example`](.env.example) to `.env.local` (git ignores it) and uncomment the line to set it.
+
 ## Waitlist
 
 There is no form or API on this site.

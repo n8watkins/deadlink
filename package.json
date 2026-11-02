@@ -8,10 +8,16 @@
     "build": "npm --prefix landing run build",
     "start": "npm --prefix landing run start",
     "lint": "npm --prefix landing run lint",
-    "typecheck": "npm --prefix landing run typecheck"
+    "typecheck": "npm --prefix landing run typecheck",
+    "release:check": "release-kit check && npm --prefix landing ci && npm run lint && npm run typecheck && npm run build",
+    "release": "release-kit release",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "engines": {
     "node": ">=20.9.0"
   },
-  "license": "UNLICENSED"
+  "license": "MIT",
+  "devDependencies": {
+    "release-kit": "github:n8watkins/release-kit#v2.2.0"
+  }
 }

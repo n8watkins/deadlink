@@ -35,12 +35,18 @@ Relink never redirects visitors anywhere except the closest equivalent page on t
 The landing page lives in [`landing/`](landing/) (Next.js 16.4, Turbopack, Tailwind CSS 4).
 
 ```bash
+npm install                  # root tools (release-kit and its commit-msg hook)
 npm --prefix landing install
 npm run dev     # development server
 npm run build   # production build
 npm start       # serve the production build
 npm run lint
+npm run typecheck
 ```
+
+The landing page has one optional environment variable, `NEXT_PUBLIC_SITE_URL` (see [`landing/README.md`](landing/README.md#environment)).
+To set it, copy [`landing/.env.example`](landing/.env.example) to `landing/.env.local` (git ignores it) and uncomment the line.
+If you keep secrets in [`pass`](https://www.passwordstore.org/), [pass-env](https://github.com/n8watkins/pass-env) is an optional alternative: list the names in a `.env.pass` file (names only, never values) and run `pass-env run -- npm run dev`.
 
 Screenshots: [desktop](docs/screenshots/landing-desktop-fold.png), [desktop full page](docs/screenshots/landing-desktop-full.png), [desktop dark](docs/screenshots/landing-desktop-dark-fold.png), [mobile](docs/screenshots/landing-mobile-fold.png), [404 page](docs/screenshots/landing-mobile-404.png).
 
@@ -55,6 +61,17 @@ See [`landing/README.md`](landing/README.md).
 Its core loop is broken and its claims are out of date (see the market report, section 1).
 Do not deploy it; the relaunch starts from a clean codebase as described in the delivery plan.
 `api/` (the Cloudflare Worker) and `app/` (the Next.js dashboard) were previously recorded as empty submodule pointers; their 2025 source is now committed here so the reference is complete.
+
+## Commits and releases
+
+Commits follow [Conventional Commits](https://www.conventionalcommits.org) (`feat: ...`, `fix: ...`, `docs: ...`), and releases are cut with [release-kit](https://github.com/n8watkins/release-kit); see [`RELEASING.md`](RELEASING.md).
+`npm install` at the root turns on a `commit-msg` hook that checks each message, and CI checks pushed commits and pull request titles.
+
+Releasing is optional and only for this repository: a fork never has to tag, release or set up anything.
+The Release workflow runs only in `n8watkins/deadlink`, so pushing a tag in a fork publishes nothing.
+The hook only checks message format; `git commit --no-verify` skips it.
+
+The weekly security scan skips the frozen lock file of the legacy `api/` (see [`api/osv-scanner.toml`](api/osv-scanner.toml)); remove that file if `api/` is ever revived.
 
 ## License
 

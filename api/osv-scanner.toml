@@ -1,0 +1,8 @@
+# api/ is the 2025 deadlink Worker, kept for reference only and never built or
+# deployed (see the root README, "Legacy code"). Its lock file is frozen with the
+# rest of that code, so the security scan skips it instead of failing on
+# advisories nobody will fix. Delete this file if api/ is ever revived.
+[[PackageOverrides]]
+ecosystem = "npm"
+ignore = true
+reason = "Legacy reference code: not built, installed or deployed"
