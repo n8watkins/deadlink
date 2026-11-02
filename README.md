@@ -1,175 +1,57 @@
-# Dead Links Switchboard - Monorepo
+# deadlink
 
-**A comprehensive link management and redirect service that automatically detects and redirects dead/broken links to working alternatives while providing monetization opportunities.**
+**The open-source 404 safety net.**
+deadlink catches broken links the moment a visitor hits them, sends them to the page they meant using your own site's content, and turns every fix into a permanent redirect with one click.
 
-**Status:** Backend 95% Complete | Frontend Integration Required  
-**Deployment Ready:** ✅ Security Hardened | Database Configured | Health Monitoring Active
+> Status (November 2026): relaunch concept.
+> The product described here is not built yet.
+> This repository currently holds the product definition, the plan, a landing page, and the 2025 code kept for reference only.
 
-## 🎯 Application Purpose & Value Proposition
+## What it will do
 
-Dead Links Switchboard is a sophisticated link management platform that:
+- **Edge 404 safety net**: a Cloudflare Worker on your zone sees origin 404s, matches the missing URL to the right live page (URL similarity plus AI embeddings of your pages), redirects when confident, and shows an honest "did you mean" page when not.
+- **Approval queue**: every match waits for one-click approval before it becomes a permanent 301.
+- **Link rot repair**: finds dead outbound links and proposes the moved page or a Wayback Machine snapshot.
+- **Migrations**: generates a redirect map when a site moves, and watches for anything it missed.
+- **Monitoring**: a free "Is your site broken?" scanner, scheduled crawls, basic uptime and certificate alerts, weekly reports.
+- **Open source and self-hostable** on your own Cloudflare account, with paid hosted tiers for convenience, scale and support.
 
-- **Automatically detects dead/broken links** and redirects users to working alternatives
-- **Monetizes dead traffic** by redirecting to relevant content with revenue sharing
-- **Provides comprehensive analytics** on link performance and user behavior  
-- **Offers bulk operations** for managing thousands of links efficiently
-- **Supports custom short URLs** and QR code generation
-- **Ensures GDPR compliance** with data export and deletion capabilities
+deadlink never redirects visitors anywhere except the closest equivalent page on the same site, or an archived copy of the page they asked for.
 
-## 🏗️ Monorepo Structure
+## Documents
 
-```
-deadlinks-switchboard/
-├── app/                         # Dashboard application (Next.js 15, React 19)
-├── landing/                     # Marketing site (Next.js + Framer Motion)
-├── api/                         # Backend API (Cloudflare Workers + D1 + KV)
-├── plugin/                      # WordPress integration
-└── package.json                 # Monorepo workspace configuration
-```
+| Document | What it covers |
+|---|---|
+| [docs/PRODUCT.md](docs/PRODUCT.md) | Positioning, audience, feature list, self-host vs hosted, planned pricing, comparison with Oh Dear, Dub and others, name options |
+| [docs/GAP_ANALYSIS.md](docs/GAP_ANALYSIS.md) | What the 2025 code offers (reusable, broken, missing) per planned feature, and what we cannot deliver yet |
+| [docs/DOCS_OUTLINE.md](docs/DOCS_OUTLINE.md) | Planned public documentation structure |
+| [docs/DELIVERY_PLAN.md](docs/DELIVERY_PLAN.md) | Architecture, licensing, milestones, effort, risks and success metrics |
+| [MARKET_REPORT_2026-11.md](MARKET_REPORT_2026-11.md) | Competitive analysis and review of the old product (the source for competitor facts) |
 
-## ✨ Implemented Features
+## Landing page
 
-### 🔧 Backend API (95% Complete)
-- **Link Management**: Create, update, delete links with custom slugs
-- **Bulk Operations**: Handle up to 100 links simultaneously  
-- **QR Code Generation**: Dynamic QR codes for any link
-- **Health Monitoring**: Automated dead link detection every 5 minutes
-- **Analytics Engine**: Track clicks, user agents, referrers, geolocation
-- **Security Hardening**: bcrypt passwords, CSRF protection, rate limiting
-- **GDPR Compliance**: Data export and account deletion endpoints
-- **Error Logging**: Comprehensive error tracking and alerting
+The landing page lives in [`landing/`](landing/) (Next.js 16.4, Turbopack, Tailwind CSS 4).
 
-### 🖥️ Frontend Components
-- **Dashboard App**: Next.js 15 with TypeScript and accessibility testing
-- **Marketing Site**: Complete landing page with Hero, Features, Pricing, FAQ
-- **WordPress Plugin**: PHP-based integration for WordPress sites
-
-### 🔒 Security & Operations
-- **Authentication**: Session-based auth with secure password hashing
-- **Database**: D1 SQL database with automated migrations and backups
-- **Monitoring**: Health checks with webhook notifications
-- **Deployment**: Staging and production environments with CI/CD
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js 18+ and npm 8+
-- Cloudflare account (Workers, D1, KV, Pages)
-
-### Installation
 ```bash
-# Clone and install dependencies
-git clone <repository-url>
-cd deadlinks-switchboard
-npm run install-all
+npm --prefix landing install
+npm run dev     # development server
+npm run build   # production build
+npm start       # serve the production build
+npm run lint
 ```
 
-### Development
-```bash
-# Start the dashboard app
-npm run dev:app              # http://localhost:3000
+Screenshots: [desktop](docs/screenshots/landing-desktop-fold.png), [desktop full page](docs/screenshots/landing-desktop-full.png), [desktop dark](docs/screenshots/landing-desktop-dark-fold.png), [mobile](docs/screenshots/landing-mobile-fold.png), [404 page](docs/screenshots/landing-mobile-404.png).
 
-# Start the marketing site  
-npm run dev:landing          # http://localhost:3001
+The early access form does not store emails until `WAITLIST_WEBHOOK_URL` is configured, and it says so to visitors.
+See [`landing/README.md`](landing/README.md).
 
-# Start the API (Cloudflare Workers)
-npm run dev:api              # http://localhost:8787
+## Legacy code (reference only)
 
-# Build all components
-npm run build
-```
+`api/`, `app/`, `plugin/`, `dist/`, `shopify-app/`, `tests/`, `phases/` and the older root Markdown files (`PROJECT-OVERVIEW.md`, `FEATURE_ANALYSIS.md`, `DEPLOYMENT_GUIDE.md`, `userSetup.md`, `dead-link-switchboard-phases.md`) belong to the 2025 affiliate short-link product.
+Its core loop is broken and its claims are out of date (see the market report, section 1).
+Do not deploy it; the relaunch starts from a clean codebase as described in the delivery plan.
 
-## 🚨 Critical Integration Issues
+## License
 
-**The monorepo has significant integration gaps that prevent production deployment:**
-
-### 1. **Authentication Fragmentation**
-- **Problem**: Dashboard uses NextAuth sessions, API expects API keys
-- **Impact**: Users cannot authenticate properly between frontend and backend
-- **Fix Required**: Unify to single session-based auth system
-
-### 2. **API Endpoint Mismatch** 
-- **Problem**: Frontend calls outdated endpoints, missing 75% of backend features
-- **Impact**: Dashboard shows hardcoded fake data instead of real API responses
-- **Fix Required**: Update frontend to use current API endpoints
-
-### 3. **CORS Configuration Missing**
-- **Problem**: API not configured for multiple frontend origins
-- **Impact**: Cross-origin requests fail between app/landing and API
-- **Fix Required**: Configure CORS for app.deadlink.io, deadlink.io domains
-
-### 4. **Hardcoded Dashboard Data**
-- **Problem**: App shows "0" values for all metrics instead of real data
-- **Impact**: Dashboard is non-functional for actual users
-- **Fix Required**: Connect dashboard components to live API endpoints
-
-## 🔧 Development Workflow
-
-### Working with Workspaces
-```bash
-# Install package in specific workspace
-npm install <package> --workspace=app
-
-# Run command in specific workspace  
-npm run test --workspace=api
-
-# List all workspaces
-npm run workspaces list
-```
-
-### Testing
-```bash
-# Run all tests
-npm test
-
-# Accessibility testing (Playwright + Axe)
-npm run test:a11y --workspace=app
-
-# API integration tests
-npm run test --workspace=api
-```
-
-## 🚢 Deployment Status
-
-### ✅ Production Ready Components
-- **Backend API**: Fully deployed with security hardening
-- **Database**: D1 with automated migrations and backups  
-- **Monitoring**: Health checks and error tracking active
-- **Security**: bcrypt, CSRF protection, rate limiting implemented
-
-### ⚠️ Integration Required
-- **Frontend-Backend Communication**: Authentication and API endpoints
-- **CORS Configuration**: Multi-domain setup
-- **Dashboard Data Integration**: Replace hardcoded values with live data
-- **User Flow**: Landing page → signup → functional dashboard
-
-## 📚 Documentation
-
-- **[User Setup Guide](./userSetup.md)** - Production deployment requirements
-- **[Deployment Ready Status](./DEPLOYMENT_READY.md)** - Security and infrastructure status
-- **[API Documentation](./api/README.md)** - Complete API reference
-- **[Dashboard Guide](./app/docs/dashboard-guide.md)** - Frontend development guide
-
-## 🎯 Next Steps for Production
-
-### **Phase 1: Critical Integration Fixes**
-1. **Unify Authentication** - Implement session-based auth across all components
-2. **Fix API Endpoints** - Update frontend to call current backend endpoints  
-3. **Configure CORS** - Set up proper cross-origin support
-4. **Connect Dashboard Data** - Replace hardcoded values with live API calls
-
-### **Phase 2: Feature Completion**
-1. **Expose Missing Features** - Add UI for bulk operations, QR codes, custom slugs
-2. **GDPR Interface** - Add data export and account deletion to dashboard
-3. **Analytics Dashboard** - Connect real analytics data to frontend
-
-### **Phase 3: Production Launch**  
-1. **End-to-End Testing** - Verify complete user flows work
-2. **Load Testing** - Ensure system handles production traffic
-3. **Monitoring Setup** - Configure production alerts and dashboards
-
----
-
-**Current Status:** 🔴 **Integration Required Before Production**  
-**Estimated Fix Time:** 3-5 days for critical integration issues  
-**Backend Completeness:** 95% | **Frontend Integration:** 25%
+Planned: AGPL-3.0 for the core, MIT for client SDKs, the embed script and plugins.
+No license file is published yet; the repository is private until the self-host release.
