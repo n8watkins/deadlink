@@ -1,27 +1,28 @@
-# deadlink: Product Definition
+# Rewire: Product Definition
 
 Status: concept, nothing in this document is built yet unless marked otherwise.
 Written 2026-11-01.
+Name decided 2026-11-01: **Rewire**, with "deadlink" as the documented fallback (section 6).
 Competitor facts come from `MARKET_REPORT_2026-11.md` and from vendor pages re-checked on 2026-11-01 (Oh Dear pricing, Dub pricing, Dub GitHub README).
 
 ## 1. Positioning
 
 ### One-liner
 
-**deadlink is the open-source 404 safety net: it catches broken links the moment a visitor hits them, sends them to the page they meant using your own site's content, and turns every fix into a permanent redirect with one click.**
+**Rewire is the open-source 404 safety net: it catches broken links the moment a visitor hits them, sends them to the page they meant using your own site's content, and turns every fix into a permanent redirect with one click.**
 
 Short form for the hero: "Catch every 404. Send visitors where they meant to go."
 
 ### The shift from the old deadlink
 
-The 2025 deadlink was an affiliate short-link service with fallback URLs, sold as "turn dead links into revenue".
+Rewire is the relaunch of the 2025 project called deadlink, which was an affiliate short-link service with fallback URLs, sold as "turn dead links into revenue".
 The relaunch drops monetization entirely.
-deadlink never redirects a visitor anywhere except the closest equivalent page on the same site, or an archived copy of the page they asked for.
+Rewire never redirects a visitor anywhere except the closest equivalent page on the same site, or an archived copy of the page they asked for.
 That rule is a product principle, a trust signal, and the only SEO-safe position (see the sneaky-redirects risk in the market report).
 
 ### Who it is for
 
-| Segment | Pain today | Why deadlink |
+| Segment | Pain today | Why Rewire |
 |---|---|---|
 | Developers and indie site owners on Cloudflare, Vercel or Netlify | Static redirect files, no idea which old URLs still get traffic | Drop-in edge Worker or middleware, open source, free tier |
 | Agencies running many client sites | Site rebuilds ship without redirect maps, rankings drop, the client blames the agency | Migration mapper plus live safety net plus a monthly report they can forward |
@@ -98,7 +99,7 @@ Status legend: **MVP** (first milestone), **Beta** (hosted beta), **Later** (aft
 |---|---|---|
 | Cloudflare (primary) | One-click deploy of the Worker onto a zone route, or `wrangler deploy` for self-hosters | MVP |
 | REST API | Sites, rules, queue, matches, scans; API keys per site; OpenAPI spec | Beta |
-| `match` endpoint and embed | `GET /v1/sites/:id/match?path=` returns candidates; a small script renders "did you mean" suggestions inside any existing 404 page; this is the path to embed deadlink in other products such as techforpros.com later | Beta |
+| `match` endpoint and embed | `GET /v1/sites/:id/match?path=` returns candidates; a small script renders "did you mean" suggestions inside any existing 404 page; this is the path to embed Rewire in other products such as techforpros.com later | Beta |
 | Next.js | Middleware or `not-found.tsx` helper that calls the match endpoint and redirects server-side | Beta |
 | WordPress | Plugin hooking the 404 template that calls the match endpoint, plus outbound link repair inside posts | Later |
 | Netlify, Vercel edge, generic reverse proxy | Edge function adapters using the same match endpoint | Later |
@@ -108,6 +109,7 @@ Status legend: **MVP** (first milestone), **Beta** (hosted beta), **Later** (aft
 
 The rule: the self-hosted edition is the full product for one organization, not a crippled demo.
 Hosted adds what is hard or tedious to run yourself, and what only makes sense multi-tenant.
+Release order (decided 2026-11-01): the open-source self-host release ships first, and the hosted beta follows (see `DELIVERY_PLAN.md`).
 
 | Capability | Self-host (AGPL-3.0, free) | Hosted (paid tiers) |
 |---|---|---|
@@ -146,7 +148,7 @@ Visitors never see an error because of billing.
 
 - **Free tier exists** because detection is free everywhere (Search Console, Rank Math, Dr. Link Check Lite, Redirect.pizza's free plan); a product without one will not get tried.
 Dub has no free plan listed today (dub.co/pricing, Business starts at $81 per month), which is an opening at the low end.
-- **Pro at $12** sits under Oh Dear Solo ($17 per month for 2 sites) and Dr. Link Check Standard ($13), above Redirect.pizza's free tier, because deadlink fixes rather than only reports.
+- **Pro at $12** sits under Oh Dear Solo ($17 per month for 2 sites) and Dr. Link Check Standard ($13), above Redirect.pizza's free tier, because Rewire fixes rather than only reports.
 The report's earlier "$9 per site" idea becomes $4 per site across 3 sites, which is easier to say yes to.
 - **Team at $49** matches Oh Dear's Studio slot for agencies at half the price per site ($109 for 25 sites vs $49 for 25 sites) and matches Dr. Link Check Professional ($49).
 The agency job (migrations and client reports) is where willingness to pay is highest.
@@ -155,14 +157,14 @@ Normal traffic passing through the Worker is not metered.
 - **No revenue share, no ad network, no affiliate rewriting**, ever.
 - **Self-host is free** to win developer trust and distribution, like Dub, Plausible and Umami; hosted revenue comes from convenience, scale and support.
 
-To validate before building billing: free scanner traffic, early access sign-ups by segment, and five agency conversations about migration pricing.
+To validate before building billing: free scanner traffic, waitlist sign-ups on n8builds.dev by segment, and five agency conversations about migration pricing.
 
 ## 5. Comparison
 
-deadlink column describes the planned product, not what exists today.
+Rewire column describes the planned product, not what exists today.
 Competitor rows are from vendor pages checked on 2026-11-01 unless marked.
 
-| | deadlink (planned) | Oh Dear | Dub |
+| | Rewire (planned) | Oh Dear | Dub |
 |---|---|---|---|
 | Category | 404 safety net and link health | Website and server monitoring | Link management and attribution |
 | Open source | Yes, AGPL-3.0 core | No | Yes, AGPL-3.0 core, `/ee` folder commercial (GitHub README) |
@@ -180,30 +182,46 @@ Competitor rows are from vendor pages checked on 2026-11-01 unless marked.
 
 Where we differ in one line each:
 
-- **vs Oh Dear:** Oh Dear tells you something broke; deadlink fixes the broken visit while it happens, then asks you to confirm the fix. Oh Dear is the better pure monitor, and we should not try to match its 15+ check types.
-- **vs Dub:** Dub manages links you create and measures conversions; deadlink rescues links you did not know were broken. We share the open-source, self-host-plus-hosted model, not the job.
+- **vs Oh Dear:** Oh Dear tells you something broke; Rewire fixes the broken visit while it happens, then asks you to confirm the fix. Oh Dear is the better pure monitor, and we should not try to match its 15+ check types.
+- **vs Dub:** Dub manages links you create and measures conversions; Rewire rescues links you did not know were broken. We share the open-source, self-host-plus-hosted model, not the job.
 
 ### Briefly, the others
 
-| Product | What it does well | Why deadlink still has room |
+| Product | What it does well | Why Rewire still has room |
 |---|---|---|
 | Redirect.pizza | Edge redirect hosting with a generous free tier, API and MCP server | Static rules you write yourself; no detection, no content matching, no approval flow (vendor page) |
 | Rank Math | Free 404 monitor and redirect manager inside WordPress | WordPress only, runs at the origin after the request, a human must write every redirect (third-party listings) |
 | Google Search Console | Free, authoritative report of crawled 404s | Reports only what Googlebot saw, days later, and fixes nothing |
-| Cloudflare Bulk Redirects | Free static redirects at the edge, 10,000 URLs on the free plan | Static lists; deadlink can export to it and should, rather than compete |
+| Cloudflare Bulk Redirects | Free static redirects at the edge, 10,000 URLs on the free plan | Static lists; Rewire can export to it and should, rather than compete |
 
 ## 6. Name
 
-"deadlink" is short, memorable and says the problem, but it names the failure rather than the fix, and it carries the old product's history.
-It is acceptable for an open-source developer tool, so the build keeps "deadlink" for now.
+**Decided 2026-11-01 by the owner: the product is called Rewire.**
+It says what the product does (reconnect broken links) rather than naming the failure, it is friendly and verb-like, and it fits the migration story.
 
-Alternatives to consider before the hosted beta (domain and trademark availability not checked):
+**Fallback: deadlink.**
+If Rewire domains or trademarks do not work out, the product goes back to "deadlink", which is short, says the problem and matches what developers search for ("dead link", "broken link").
+The repository and folder keep the name `deadlink` either way.
 
-1. **Rewire** - says "we reconnect your links"; friendly, verb-like, works for the migration story.
-2. **Lost & Found** (styled `lostfound`) - says exactly what the did-you-mean page does; warm, non-technical, good for small businesses.
-3. **Signpost** - the page that tells you where to go instead; calm, trustworthy, fits the "never redirect for revenue" principle.
+### Domains (RDAP checks on 2026-11-01)
 
-Recommendation: keep "deadlink" through MVP and the open-source release (developers search for "dead link" and "broken link"), and decide on a rename before paid hosted tiers launch, after checking domains and trademarks.
+| Domain | Status |
+|---|---|
+| rewire.dev | Taken |
+| rewire.app | Taken |
+| rewirehq.com | Taken |
+| userewire.com | Taken |
+| getrewire.dev | Looked available, unconfirmed, not registered |
+| rewire.so | Looked available, unconfirmed, not registered |
+
+The landing page uses `https://getrewire.dev` as a placeholder canonical URL (overridable with `NEXT_PUBLIC_SITE_URL`).
+The domain is not registered yet; register it, or pick another, before any public launch.
+
+### Other name checks still to do
+
+- Trademark search for "Rewire" in software classes (US and EU) before the hosted beta.
+- The npm package `rewire` is taken by a popular dependency-injection library for Node.js unit tests, so the planned setup CLI is written as `npx getrewire init` until a package name is chosen.
+That library also crowds npm and GitHub search results for "rewire", which matters for an open-source launch.
 
 ## 7. Principles
 

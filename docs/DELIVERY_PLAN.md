@@ -1,15 +1,24 @@
-# deadlink: Delivery Plan
+# Rewire: Delivery Plan
 
 Written 2026-11-01.
+The product is called Rewire ("deadlink" is the fallback name); the repository keeps the name `deadlink`.
 Scope: how to get from today (concept, docs, landing page) to a paid hosted product with an open-source self-host edition.
 Read `PRODUCT.md` for what we are building and `GAP_ANALYSIS.md` for why we start from a clean codebase.
 Platform limits and prices quoted below must be re-checked against Cloudflare's docs when each piece is built.
+
+## Owner decisions
+
+| Date | Decision |
+|---|---|
+| 2026-11-01 | The product name is **Rewire**. "deadlink" stays the documented fallback in case Rewire domains or trademarks do not work out. `https://getrewire.dev` is the placeholder canonical URL; it looked available but is not registered yet. |
+| 2026-11-01 | **The self-host release (M2) comes before the hosted beta (M3).** This is confirmed and no longer an open question. |
+| 2026-11-01 | The waitlist lives on n8builds.dev (`https://n8builds.dev/upcoming?interest=rewire#rewire`), where the owner builds in public; the landing page has no sign-up form of its own. |
 
 ## 1. Architecture
 
 ### Shape: thin edge agent, shared backend
 
-The key design decision is to split deadlink in two.
+The key design decision is to split Rewire in two.
 
 - **Edge agent**: a small Cloudflare Worker that runs on the customer's own zone, in the customer's own Cloudflare account.
 It passes every request to the origin untouched and only acts when the origin answers 404 (or a configured soft 404).
@@ -115,7 +124,7 @@ One codebase with `DEPLOYMENT_MODE=hosted|self`.
 Designed now, built in the integrations milestone:
 
 - The **match API** is the integration contract: any host or CMS can call it from its own 404 handler.
-- A **workspace API** (create site, set sitemap, read the queue, approve rules) lets a platform such as Tech for Pros provision deadlink for each of its customer sites and show the queue inside its own admin.
+- A **workspace API** (create site, set sitemap, read the queue, approve rules) lets a platform such as Tech for Pros provision Rewire for each of its customer sites and show the queue inside its own admin.
 - An **embed script** renders did-you-mean suggestions inside an existing 404 page.
 - **Webhooks** (HMAC-signed) for new queue items, approvals and alerts, so a platform can surface them in its own notifications.
 - White-label options on the Team tier cover reports and the did-you-mean page.
@@ -136,7 +145,7 @@ Hosted-only code (Stripe integration, multi-region uptime probes) can live in a 
 
 ## 2. Phased milestones
 
-Order and reasoning: prove matching quality first (the riskiest assumption), ship a working single-site product, open-source it (cheap distribution and feedback, no billing or multi-tenancy needed), then build the hosted business on top, then broaden integrations.
+Order and reasoning (self-host before hosted confirmed by the owner on 2026-11-01): prove matching quality first (the riskiest assumption), ship a working single-site product, open-source it (cheap distribution and feedback, no billing or multi-tenancy needed), then build the hosted business on top, then broaden integrations.
 This differs from "hosted first" because the self-host edition is almost exactly the MVP, while hosted adds tenancy, billing and support that should wait for proof of demand.
 
 Effort assumes one full-time developer working with AI coding assistance; ranges include testing and docs.
@@ -160,9 +169,9 @@ Effort assumes one full-time developer working with AI coding assistance; ranges
 ### M2. Open-source self-host release (2 to 3 weeks)
 
 - Repository goes public under AGPL-3.0 (core) and MIT (clients).
-- `npx deadlink init` creates D1, KV, Vectorize, Queues and R2, writes `wrangler.jsonc`, deploys; plus a Deploy to Cloudflare button.
+- `npx getrewire init` creates D1, KV, Vectorize, Queues and R2, writes `wrangler.jsonc`, deploys; plus a Deploy to Cloudflare button.
 - Self-host docs from `DOCS_OUTLINE.md`: quickstart, configuration, Worker setup, security, upgrading.
-- Launch: Show HN, Cloudflare community, r/webdev and r/selfhosted; landing page early access form wired to real storage (D1 via a Worker), double opt-in.
+- Launch: Show HN, Cloudflare community, r/webdev and r/selfhosted; waitlist subscribers on n8builds.dev get the release email.
 - Exit: 10 external self-host installs reporting success in issues or discussions.
 
 ### M3. Hosted beta (5 to 7 weeks)
@@ -186,7 +195,7 @@ Effort assumes one full-time developer working with AI coding assistance; ranges
 ### M5. General availability (2 to 3 weeks after M3)
 
 - Paid tiers on, usage metering verified against invoices, dunning, upgrade and downgrade flows.
-- Name decision made and domain registered before GA (see `PRODUCT.md` section 6).
+- Domain registered and trademark checked for Rewire before GA, or fall back to deadlink (see `PRODUCT.md` section 6).
 - Support process, incident runbook, backups and restore drill.
 
 Indicative total: about 17 to 25 weeks from M0 to GA for one developer; M4 overlapping M3 keeps it near the lower end.
@@ -199,7 +208,7 @@ If it is not precise enough, we find out in two weeks instead of after building 
 2. **The edge agent with the did-you-mean page and approval queue (M1).**
 This is the feature nobody else sells, and it is useful even at modest match quality because low-confidence cases still get a better 404 page and the owner still gets a prioritized queue.
 3. **The free scanner (end of M1).**
-Cheap to build on top of the crawler, it validates demand, earns search traffic for "broken link checker" intent and fills the early access list.
+Cheap to build on top of the crawler, it validates demand, earns search traffic for "broken link checker" intent and fills the waitlist.
 
 Deliberately later: billing (no one to bill yet), short links (Dub and Bitly own this), Oh Dear-style deep monitoring (not our wedge).
 
@@ -215,9 +224,9 @@ Deliberately later: billing (no one to bill yet), short links (Dub and Bitly own
 | **Scanner abuse** (scanning third-party sites, crawl amplification) | Medium | Medium | Turnstile, per-IP and per-target limits, robots.txt respected, identifiable user agent, page cap |
 | **Crawls blocked or JavaScript-only sites** | Medium | Medium | Clear "blocked" status; Browser Rendering only where needed and later; sitemap-first indexing |
 | **Cloudflare lock-in for self-hosters** | High (by design) | Low to medium | State it plainly; integrations make the backend usable from non-Cloudflare sites; abstract stores behind interfaces so a Node or Docker port remains possible |
-| **Willingness to pay is low** (detection is free everywhere) | Medium | High | Validate with the scanner and early access list before billing; lead with agencies and migrations where budgets exist; keep costs near zero until then |
+| **Willingness to pay is low** (detection is free everywhere) | Medium | High | Validate with the scanner and the waitlist before billing; lead with agencies and migrations where budgets exist; keep costs near zero until then |
 | **Owner focus** (Tech for Pros is the active business) | High | Medium | Milestone gates with explicit continue or stop decisions; the integration API means work is reusable inside Tech for Pros even if the standalone product stops |
-| **Name and trademark** | Low | Medium | Decide before GA; keep the brand isolated in `lib/site.ts` and docs |
+| **Name and trademark**: Rewire domain or trademark unavailable; npm and GitHub search crowded by the unrelated `rewire` test library | Medium | Medium | Name decided (Rewire); register a domain and run a trademark search before GA, otherwise fall back to deadlink; keep the brand isolated in `lib/site.ts` and docs |
 
 ## 5. Success metrics
 
@@ -230,8 +239,8 @@ North star: **broken visits rescued per week** (caught 404s that ended on a work
 | M1 | Rescue rate on dogfood sites (rescued / caught human 404s) | At least 60% |
 | M1 | Added latency on pass-through requests | Not measurable above normal Worker overhead (target under 5 ms at p95) |
 | M2 | External self-host installs | 10 in the first month |
-| M2 | GitHub stars and early access sign-ups | 500 stars, 300 sign-ups in the first month (directional, not a gate) |
-| M2 | Scanner runs to early access sign-up conversion | At least 5% |
+| M2 | GitHub stars and waitlist sign-ups | 500 stars, 300 sign-ups in the first month (directional, not a gate) |
+| M2 | Scanner runs to waitlist sign-up conversion | At least 5% |
 | M3 | Activation (connected and first approval within 7 days) | At least 40% |
 | M3 | Weekly active sites (an approval or report open per week) | At least 50% of connected sites |
 | M5 | Free to paid conversion | 3 to 5% |
@@ -241,5 +250,5 @@ North star: **broken visits rescued per week** (caught 404s that ended on a work
 ### Decision gates
 
 - After M0: continue to M1 only if the precision gate passes; otherwise re-scope to suggestion-only and re-check the pricing story.
-- After M2: continue to the hosted beta if there are at least 10 external installs or 300 qualified sign-ups; otherwise keep deadlink as an open-source project and fold the agent into Tech for Pros as the market report originally recommended.
+- After M2: continue to the hosted beta if there are at least 10 external installs or 300 qualified sign-ups; otherwise keep Rewire as an open-source project and fold the agent into Tech for Pros as the market report originally recommended.
 - After M3: switch on billing if activation is at least 40% and at least five beta users say they would pay at the planned price.

@@ -1,3 +1,5 @@
+> Note (2026-11-01): the relaunched product is now called Rewire; this report keeps its original "deadlink" wording.
+
 # deadlink: Market Report and Relaunch Assessment (November 2026)
 
 Prepared 2026-11-01.

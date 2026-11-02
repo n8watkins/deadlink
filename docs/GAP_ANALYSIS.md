@@ -1,6 +1,7 @@
-# deadlink: Gap Analysis
+# Rewire: Gap Analysis
 
 Written 2026-11-01.
+The product is now called Rewire; "deadlink" below refers to the 2025 code and remains the fallback name (see `PRODUCT.md` section 6).
 Compares the 2025 code in this repo (`api/`, `app/`, `landing/`, `plugin/`, `dist/`, `shopify-app/`, `tests/`) against the relaunch feature list in `PRODUCT.md`.
 Evidence for "broken" items is in `MARKET_REPORT_2026-11.md`, section 1.
 
@@ -120,10 +121,10 @@ Stated plainly so the landing page and sales conversations never promise them:
 1. **Any working product.** Today there is a concept, docs and a landing page; no Worker, crawler, matcher or dashboard from the new design exists.
 2. **Proven match quality.** We do not know the precision of embedding-based 404 matching on real sites; until we measure it, automatic 301s must stay opt-in.
 3. **Non-Cloudflare sites at the edge.** Sites not proxied through Cloudflare need the Next.js, WordPress or embed integrations, none of which exist; the edge Worker only works on Cloudflare zones.
-4. **Sign-ups, accounts or billing.** The waitlist form does not store anything until a storage backend is chosen and wired; there is no Stripe integration.
+4. **Accounts or billing.** The landing page has no form of its own: the waitlist lives on n8builds.dev (`/upcoming?interest=rewire`), which is being built separately and is not live yet; there is no Stripe integration.
 5. **Uptime monitoring comparable to Oh Dear.** Basic HTTP and certificate checks are planned; DNS, cron, port, Lighthouse and status pages are not, and should not be promised.
 6. **Fixing outbound links inside a CMS.** Initially we can only report and suggest replacements; applying them needs integrations.
 7. **JavaScript-rendered sites in the index.** The first crawler reads HTML; single-page apps need Browser Rendering, which adds cost and is not in the MVP.
 8. **Support, SLAs or uptime guarantees.** None until there are paying customers and on-call capacity.
-9. **A decided name and domain.** "deadlink" is a working name; no domain is registered for the relaunch.
+9. **A registered domain and cleared trademark.** The name is decided (Rewire, with "deadlink" as fallback), but `getrewire.dev` is only a placeholder: it looked available on 2026-11-01 and is not registered, and no trademark search has been done.
 10. **Published source code.** The repository is private; the AGPL release happens at the self-host milestone.
