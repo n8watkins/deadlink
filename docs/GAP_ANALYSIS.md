@@ -127,4 +127,4 @@ Stated plainly so the landing page and sales conversations never promise them:
 7. **JavaScript-rendered sites in the index.** The first crawler reads HTML; single-page apps need Browser Rendering, which adds cost and is not in the MVP.
 8. **Support, SLAs or uptime guarantees.** None until there are paying customers and on-call capacity.
 9. **A registered domain and cleared trademark.** The working name is decided (Relink, with fallbacks in `PRODUCT.md`), but the landing page lives on a subdomain (https://relink.n8builds.dev) for now: `getrelink.dev` looked available on 2026-11-01 and is not registered, and no trademark search has been done.
-10. **Published source code.** The repository is private; the AGPL release happens at the self-host milestone.
+10. **Published source code.** Done 2026-11-02: the repository is public under the MIT License; the packaged self-host release is still to come.

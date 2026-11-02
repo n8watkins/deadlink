@@ -38,7 +38,7 @@ export function Footer() {
             <Logo />
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            The open-source 404 safety net. In development: source code will be published under AGPL-3.0 with the self-host release.
+            The open-source 404 safety net. In development: the source code is public under the MIT License.
           </p>
         </div>
         {groups.map((g) => (

@@ -111,7 +111,7 @@ The rule: the self-hosted edition is the full product for one organization, not 
 Hosted adds what is hard or tedious to run yourself, and what only makes sense multi-tenant.
 Release order (decided 2026-11-01): the open-source self-host release ships first, and the hosted beta follows (see `DELIVERY_PLAN.md`).
 
-| Capability | Self-host (AGPL-3.0, free) | Hosted (paid tiers) |
+| Capability | Self-host (MIT, free) | Hosted (paid tiers) |
 |---|---|---|
 | Edge Worker, matching, did-you-mean page, rules, approval queue | Yes | Yes |
 | Content index (Workers AI + Vectorize) | Yes, on your Cloudflare account and bill | Yes, included |
@@ -139,7 +139,7 @@ Nothing is billable today.
 | Free | $0 | 1 | 1,000 caught 404s per month, up to 500 indexed pages, weekly crawl, approval queue, did-you-mean page, community support | Personal sites, trying it out |
 | Pro | $12 per month | 3 | 50,000 caught 404s per month, 5,000 pages per site, daily crawl, outbound link repair with Wayback, uptime and SSL alerts, migration mapper, API | Indie developers, small businesses |
 | Team | $49 per month | 25 | 500,000 caught 404s per month, 25,000 pages per site, 5 seats, white-label did-you-mean page and reports, Slack and webhook alerts, priority support | Agencies, content teams |
-| Self-host | $0 (AGPL-3.0) | Unlimited | Everything in the core on your own Cloudflare account; you pay Cloudflare directly | Developers, privacy-sensitive teams |
+| Self-host | $0 (MIT) | Unlimited | Everything in the core on your own Cloudflare account; you pay Cloudflare directly | Developers, privacy-sensitive teams |
 
 Overages: soft limits with an email warning; past the limit, the Worker keeps serving existing rules and the did-you-mean page but stops creating new automatic matches until the next cycle.
 Visitors never see an error because of billing.
@@ -167,7 +167,7 @@ Competitor rows are from vendor pages checked on 2026-11-01 unless marked.
 | | Relink (planned) | Oh Dear | Dub |
 |---|---|---|---|
 | Category | 404 safety net and link health | Website and server monitoring | Link management and attribution |
-| Open source | Yes, AGPL-3.0 core | No | Yes, AGPL-3.0 core, `/ee` folder commercial (GitHub README) |
+| Open source | Yes, MIT | No | Yes, AGPL-3.0 core, `/ee` folder commercial (GitHub README) |
 | Self-hostable | Yes, on Cloudflare | No, hosted (data in Belgium) | Yes, documented guide |
 | Catches 404s live and fixes them | Yes, at the edge | No, reports broken links after a crawl | No, manages links you create |
 | Matches a missing URL to the right page | Yes, embeddings of your own content | No | No |

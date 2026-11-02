@@ -132,7 +132,9 @@ Designed now, built in the integrations milestone:
 
 ### Open-source licensing
 
-**Decision: AGPL-3.0 for the core (agent, backend, dashboard), MIT for client SDKs, the embed script and the WordPress plugin.**
+**Decision (updated 2026-11-02): MIT for everything.**
+The owner chose MIT for the whole repository on 2026-11-02, replacing the earlier plan of AGPL-3.0 for the core and MIT for clients.
+The trade-offs below were the basis of that earlier plan and are kept for context; MIT accepts the "Against" risk in its row in exchange for maximum adoption.
 
 | Option | For | Against |
 |---|---|---|
@@ -140,8 +142,8 @@ Designed now, built in the integrations milestone:
 | AGPL-3.0 | Anyone offering it as a network service must publish their changes; proven open-core model (Dub, Plausible, Cal.com); still free for every self-hoster | Some companies ban AGPL internally; slightly less contribution from large firms |
 | Source-available (BSL, FSL) | Strongest protection | Not open source by OSI definition, which weakens the "open-source alternative" positioning that is half the pitch |
 
-The client pieces are MIT because customers embed them in their own code and must not have to think about copyleft.
-Contributions come in under the Developer Certificate of Origin plus a short contributor license agreement, so a commercial license can be offered later to a company that cannot use AGPL.
+Under MIT, customers can embed every piece in their own code without thinking about copyleft.
+Contributions come in under the Developer Certificate of Origin; no contributor license agreement is needed.
 Hosted-only code (Stripe integration, multi-region uptime probes) can live in a small private package behind interfaces, so the public repo stays complete for self-hosters without exposing billing internals.
 
 ## 2. Phased milestones
@@ -169,7 +171,7 @@ Effort assumes one full-time developer working with AI coding assistance; ranges
 
 ### M2. Open-source self-host release (2 to 3 weeks)
 
-- Repository goes public under AGPL-3.0 (core) and MIT (clients).
+- Repository is public under the MIT License (since 2026-11-02, ahead of the self-host release).
 - `npx getrelink init` creates D1, KV, Vectorize, Queues and R2, writes `wrangler.jsonc`, deploys; plus a Deploy to Cloudflare button.
 - Self-host docs from `DOCS_OUTLINE.md`: quickstart, configuration, Worker setup, security, upgrading.
 - Launch: Show HN, Cloudflare community, r/webdev and r/selfhosted; waitlist subscribers on n8builds.dev get the release email.

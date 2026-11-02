@@ -14,7 +14,7 @@ const jsonLd = {
       operatingSystem: "Web, Cloudflare Workers",
       description: site.description,
       url: site.url,
-      license: "https://www.gnu.org/licenses/agpl-3.0.html",
+      license: "https://opensource.org/license/mit",
     },
     {
       "@type": "FAQPage",

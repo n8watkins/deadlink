@@ -167,7 +167,7 @@ export const featureGroups: FeatureGroup[] = [
 
 export type Cell = boolean | string;
 export const comparison: { row: string; relink: Cell; ohdear: Cell; dub: Cell }[] = [
-  { row: "Open source", relink: "AGPL-3.0", ohdear: false, dub: "AGPL-3.0 core" },
+  { row: "Open source", relink: "MIT", ohdear: false, dub: "AGPL-3.0 core" },
   { row: "Self-hostable", relink: true, ohdear: false, dub: true },
   { row: "Catches 404s live and fixes them", relink: true, ohdear: false, dub: false },
   { row: "Matches a missing URL to the right page", relink: true, ohdear: false, dub: false },
@@ -230,7 +230,7 @@ export const tiers = [
   {
     name: "Self-host",
     price: "$0",
-    cadence: "AGPL-3.0",
+    cadence: "MIT",
     blurb: "Run everything on your own Cloudflare account.",
     features: [
       "Unlimited sites",
@@ -267,7 +267,7 @@ export const faqs = [
   },
   {
     q: "What does open source mean here?",
-    a: "The core (Worker, matching, dashboard and API) will be published under AGPL-3.0 so you can read, run and modify it. Client libraries and plugins will be MIT. The hosted service runs the same code and charges for convenience, scale and support.",
+    a: "Everything (Worker, matching, dashboard, API, client libraries and plugins) is under the MIT License, so you can read, run and modify it. The code is public on GitHub today; the packaged self-host release comes before the hosted beta. The hosted service runs the same code and charges for convenience, scale and support.",
   },
   {
     q: "What data does Relink collect from my visitors?",

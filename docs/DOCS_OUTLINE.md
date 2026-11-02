@@ -109,7 +109,7 @@ Pages marked (MVP) ship with the first milestone; the rest ship with the feature
 | Overages | What happens at the limit (existing rules keep working, no visitor-facing errors). |
 | Billing | Payment methods, invoices, upgrades, downgrades and cancellation. |
 | Self-host vs hosted | Which to choose, costs on your own Cloudflare account, and moving between them. |
-| Open-source license | What AGPL-3.0 means for you, and why SDKs and plugins are MIT. |
+| Open-source license | What the MIT License means for you. |
 
 ## 10. Project
 

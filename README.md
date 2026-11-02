@@ -54,8 +54,9 @@ See [`landing/README.md`](landing/README.md).
 `api/`, `app/`, `plugin/`, `dist/`, `shopify-app/`, `tests/`, `phases/` and the older root Markdown files (`PROJECT-OVERVIEW.md`, `FEATURE_ANALYSIS.md`, `DEPLOYMENT_GUIDE.md`, `userSetup.md`, `dead-link-switchboard-phases.md`) belong to the 2025 affiliate short-link product.
 Its core loop is broken and its claims are out of date (see the market report, section 1).
 Do not deploy it; the relaunch starts from a clean codebase as described in the delivery plan.
+`api/` (the Cloudflare Worker) and `app/` (the Next.js dashboard) were previously recorded as empty submodule pointers; their 2025 source is now committed here so the reference is complete.
 
 ## License
 
-Planned: AGPL-3.0 for the core, MIT for client SDKs, the embed script and plugins.
-No license file is published yet; the repository is private until the self-host release.
+[MIT](LICENSE) © 2026 Nathan Watkins.
+Everything in this repository, including the 2025 reference code, is under the MIT License (decided 2026-11-02).

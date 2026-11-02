@@ -21,8 +21,8 @@ export default function TermsPage() {
       </p>
       <h2>Open source</h2>
       <p>
-        The Relink core will be released under the GNU Affero General Public License v3.0, and client libraries and plugins under the
-        MIT License. The license file in the repository is authoritative once published.
+        The Relink source code is public at github.com/n8watkins/deadlink under the MIT License. The license file in the repository
+        is authoritative.
       </p>
       <h2>Comparisons</h2>
       <p>

@@ -238,8 +238,8 @@ export function OpenSource() {
   const points = [
     {
       icon: GitBranch,
-      title: "AGPL-3.0 core",
-      body: "Worker, matching, dashboard and API. Read it, run it, change it. SDKs and plugins under MIT.",
+      title: "MIT licensed",
+      body: "Worker, matching, dashboard, API, SDKs and plugins. Read it, run it, change it.",
     },
     {
       icon: Cloud,
