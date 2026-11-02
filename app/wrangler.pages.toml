@@ -1,0 +1,18 @@
+name = "dead-link-dashboard"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "dead-link-dashboard"
+
+[env.staging]
+name = "dead-link-dashboard-staging"
+
+[env.production.vars]
+NEXT_PUBLIC_API_BASE_URL = "https://api.deadlink.io"
+NEXT_PUBLIC_APP_NAME = "DeadLink Switchboard"
+NEXT_PUBLIC_APP_URL = "https://deadlink.io"
+
+[env.staging.vars]
+NEXT_PUBLIC_API_BASE_URL = "https://api-staging.deadlink.io"
+NEXT_PUBLIC_APP_NAME = "DeadLink Switchboard (Staging)"
+NEXT_PUBLIC_APP_URL = "https://staging.deadlink.io"

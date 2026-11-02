@@ -1,0 +1,35 @@
+name = "dead-link-health-check"
+main = "src/health-check.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "LINKS"
+id = "REPLACE_WITH_YOUR_KV_ID"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dead-link-db"
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+
+[triggers]
+crons = ["*/10 * * * *"]  # Every 10 minutes
+
+[vars]
+HEALTH_CHECK_BATCH_SIZE = "50"
+HEALTH_CHECK_TIMEOUT = "5000"
+HEALTH_CHECK_RETRIES = "2"
+
+[env.staging]
+name = "dead-link-health-check-staging"
+
+[env.staging.triggers]
+crons = ["*/5 * * * *"]  # Every 5 minutes for testing
+
+[env.production]
+name = "dead-link-health-check-prod"
+
+[env.production.triggers]
+crons = ["*/15 * * * *"]  # Every 15 minutes in production
+
+[env.production.vars]
+HEALTH_CHECK_BATCH_SIZE = "100"  # Larger batches in production

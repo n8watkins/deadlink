@@ -1,0 +1,17 @@
+name = "dead-link-test-worker"
+main = "src/test-worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "LINKS"
+id = "0e77cf58ec1b4e18a108232691695888"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dead-link-db"
+database_id = "d9dbc318-7190-4a54-b9bb-656514f39ecf"
+
+[vars]
+ENVIRONMENT = "test"
+API_KEY_SALT = "test-only-salt-not-a-secret"
+HASH_SALT = "9876543210fedcba9876543210fedcba9876543210fedcba9876543210fedcba"

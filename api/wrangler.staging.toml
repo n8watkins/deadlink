@@ -1,0 +1,60 @@
+name = "dead-link-switchboard-staging"
+main = "src/index-mvp.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "LINKS"
+id = "staging_links_kv"
+preview_id = "staging_links_preview"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "staging_rate_limit_kv"
+preview_id = "staging_rate_limit_preview"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "dead-link-db-staging"
+database_id = "staging-db-id-here"
+
+# Analytics Engine (if available)
+# [[analytics_engine_datasets]]
+# binding = "ANALYTICS"
+# dataset = "dead_link_clicks_staging"
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "staging"
+API_BASE_URL = "https://staging-api.deadlink.io"
+DOCS_URL = "https://docs.deadlink.io"
+FALLBACK_404_URL = "https://staging.deadlink.io/404"
+BOT_USER_AGENT = "DeadLinkSwitchboard/1.0-staging (+https://deadlink.io/bot)"
+
+# Security Settings
+BLOCK_BOTS = "true"
+BOT_BLOCK_THRESHOLD = "90"
+
+# Rate Limiting
+RATE_LIMIT_SIGNUP = "5"
+RATE_LIMIT_SIGNUP_WINDOW = "60"
+RATE_LIMIT_SIGNIN = "10"
+RATE_LIMIT_SIGNIN_WINDOW = "15"
+
+# Health Check Settings
+HEALTH_CHECK_BATCH_SIZE = "100"
+HEALTH_CHECK_TIMEOUT = "5000"
+HEALTH_CHECK_RETRIES = "3"
+
+# CORS Settings
+CORS_ORIGIN = "https://staging.deadlink.io,https://staging-app.deadlink.io"
+
+# Scheduled triggers
+[triggers]
+crons = ["*/10 * * * *"]  # Run every 10 minutes in staging
+
+# Routes (optional custom domains)
+# routes = [
+#   { pattern = "staging-api.deadlink.io", custom_domain = true }
+# ]

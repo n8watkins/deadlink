@@ -1,0 +1,72 @@
+name = "dead-link-switchboard"
+main = "src/index-mvp.js"
+compatibility_date = "2024-01-01"
+
+[env.development]
+name = "dead-link-switchboard-dev"
+
+[[env.development.kv_namespaces]]
+binding = "LINKS"
+id = "0e77cf58ec1b4e18a108232691695888"
+preview_id = "e8716add419f4c3b8dac66d4927dbe05"
+
+[[env.development.kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "rate_limit_dev"
+preview_id = "rate_limit_dev_preview"
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "dead-link-db"
+database_id = "d9dbc318-7190-4a54-b9bb-656514f39ecf"
+
+[env.development.vars]
+ENVIRONMENT = "development"
+BLOCK_BOTS = "false"
+BOT_BLOCK_THRESHOLD = "90"
+API_BASE_URL = "http://localhost:8787"
+
+[env.production]
+name = "dead-link-switchboard"
+
+[[kv_namespaces]]
+binding = "LINKS"
+id = "0e77cf58ec1b4e18a108232691695888"
+preview_id = "e8716add419f4c3b8dac66d4927dbe05"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "rate_limit_prod"
+preview_id = "rate_limit_prod_preview"
+
+# Analytics Engine configuration (Phase 4)
+# Uncomment when Analytics Engine is enabled in dashboard
+# [[analytics_engine_datasets]]
+# binding = "ANALYTICS"
+# dataset = "dead_link_clicks"
+
+# D1 Database configuration
+[[d1_databases]]
+binding = "DB"
+database_name = "dead-link-db"
+database_id = "d9dbc318-7190-4a54-b9bb-656514f39ecf"
+
+[vars]
+ENVIRONMENT = "development"
+BLOCK_BOTS = "false"
+BOT_BLOCK_THRESHOLD = "90"
+API_BASE_URL = "http://localhost:8787"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+BLOCK_BOTS = "false"
+BOT_BLOCK_THRESHOLD = "95"
+API_BASE_URL = "https://api.deadlink.io"
+
+# Scheduled triggers for health checks
+[triggers]
+crons = ["*/5 * * * *"]  # Run every 5 minutes
+
+# [[env.production.analytics_engine_datasets]]
+# binding = "ANALYTICS"
+# dataset = "dead_link_clicks_prod"

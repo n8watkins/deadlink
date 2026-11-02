@@ -1,0 +1,75 @@
+name = "dead-link-switchboard"
+main = "src/index-mvp.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "LINKS"
+id = "prod_links_kv"
+preview_id = "prod_links_preview"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "prod_rate_limit_kv"
+preview_id = "prod_rate_limit_preview"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "dead-link-db-prod"
+database_id = "production-db-id-here"
+
+# Analytics Engine
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "dead_link_clicks_prod"
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "production"
+API_BASE_URL = "https://api.deadlink.io"
+DOCS_URL = "https://docs.deadlink.io"
+FALLBACK_404_URL = "https://deadlink.io/404"
+BOT_USER_AGENT = "DeadLinkSwitchboard/1.0 (+https://deadlink.io/bot)"
+
+# Security Settings
+BLOCK_BOTS = "true"
+BOT_BLOCK_THRESHOLD = "95"
+
+# Rate Limiting (Production values)
+RATE_LIMIT_SIGNUP = "3"
+RATE_LIMIT_SIGNUP_WINDOW = "3600"  # 1 hour
+RATE_LIMIT_SIGNIN = "5"
+RATE_LIMIT_SIGNIN_WINDOW = "900"   # 15 minutes
+
+# Health Check Settings
+HEALTH_CHECK_BATCH_SIZE = "200"
+HEALTH_CHECK_TIMEOUT = "10000"
+HEALTH_CHECK_RETRIES = "3"
+
+# CORS Settings
+CORS_ORIGIN = "https://deadlink.io,https://app.deadlink.io,https://dashboard.deadlink.io"
+
+# Scheduled triggers
+[triggers]
+crons = ["*/5 * * * *"]  # Run every 5 minutes in production
+
+# Routes for custom domains
+routes = [
+  { pattern = "api.deadlink.io", custom_domain = true }
+]
+
+# Usage model (for billing)
+usage_model = "bundled"
+
+# Limits and performance
+[limits]
+cpu_ms = 50  # 50ms CPU time per request
+
+# Observability
+[observability]
+enabled = true
+
+# Placement (for performance)
+[placement]
+mode = "smart"
