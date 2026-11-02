@@ -16,7 +16,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-bg/85 backdrop-blur supports-[backdrop-filter]:bg-bg/70">
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
-        <Link href="/" className="rounded-lg" aria-label="Rewire home">
+        <Link href="/" className="rounded-lg" aria-label="Relink home">
           <Logo />
         </Link>
         <ul className="hidden items-center gap-1 lg:flex">

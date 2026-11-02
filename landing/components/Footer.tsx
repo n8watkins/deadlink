@@ -34,7 +34,7 @@ export function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div className="max-w-xs">
-          <Link href="/" className="rounded-lg" aria-label="Rewire home">
+          <Link href="/" className="rounded-lg" aria-label="Relink home">
             <Logo />
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -65,7 +65,7 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-6 text-xs text-muted sm:flex-row sm:items-start sm:justify-between sm:gap-8 sm:px-6">
           <p className="max-w-2xl leading-relaxed">
-            Rewire is a product in development. Competitor details on this page come from their public pricing pages, checked 1&nbsp;November&nbsp;2026.
+            Relink is a product in development. Competitor details on this page come from their public pricing pages, checked 1&nbsp;November&nbsp;2026.
           </p>
           <p className="shrink-0">
             Built by N8 at{" "}

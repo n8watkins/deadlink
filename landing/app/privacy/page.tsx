@@ -3,7 +3,7 @@ import { LegalPage } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "How the Rewire website handles your data while the product is in development.",
+  description: "How the Relink website handles your data while the product is in development.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage title="Privacy" updated="1 November 2026">
       <p>
-        Rewire is in development and has no customers or accounts yet. This short notice covers this website only. A full privacy
+        Relink is in development and has no customers or accounts yet. This short notice covers this website only. A full privacy
         policy and data processing agreement will be published before the hosted beta.
       </p>
       <h2>What this website collects</h2>
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
       </ul>
       <h2>The waitlist</h2>
       <p>
-        The waitlist lives on n8builds.dev, where Rewire is built in public. If you join it there, n8builds.dev handles your email
+        The waitlist lives on n8builds.dev, where Relink is built in public. If you join it there, n8builds.dev handles your email
         address under its own privacy notice. It is only used to tell you when a release is ready, and it is never sold or shared.
       </p>
       <h2>The product</h2>

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Rewire: catch every 404 and send visitors where they meant to go";
+export const alt = "Relink: catch every 404 and send visitors where they meant to go";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,7 +29,7 @@ export default function OpengraphImage() {
               background: "#ff8a4c",
             }}
           />
-          Rewire
+          Relink
           <div
             style={{
               marginLeft: 16,

@@ -59,7 +59,7 @@ export function Hero() {
             <span className="text-fixed">Send visitors where they meant to go.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty">
-            Rewire sits at the edge of your site, catches broken links the moment someone hits them, and finds the right page using
+            Relink sits at the edge of your site, catches broken links the moment someone hits them, and finds the right page using
             your own content. You approve each fix with one click, and it becomes a permanent redirect.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -105,7 +105,7 @@ export function HowItWorks() {
           id="how-title"
           eyebrow="How it works"
           title="A safety net, not another report"
-          lede="Crawlers tell you what broke last week. Rewire fixes the visit that is breaking right now, then asks you to confirm the fix."
+          lede="Crawlers tell you what broke last week. Relink fixes the visit that is breaking right now, then asks you to confirm the fix."
         />
         <ol className="mt-12 grid gap-5 md:grid-cols-3">
           {steps.map((s, i) => (
@@ -121,7 +121,7 @@ export function HowItWorks() {
           ))}
         </ol>
         <div className="mt-6 grid gap-4 rounded-2xl border border-line bg-bg p-6 font-mono text-sm sm:grid-cols-3">
-          <Flow tone="broken" label="Without Rewire" text="Visitor hits /old-pricing, sees your 404 page, leaves." />
+          <Flow tone="broken" label="Without Relink" text="Visitor hits /old-pricing, sees your 404 page, leaves." />
           <Flow tone="pending" label="Low confidence" text="Did-you-mean page with the 3 best matches, still an honest 404." />
           <Flow tone="fixed" label="High confidence" text="Redirect to /pricing now, permanent 301 after you approve." />
         </div>
@@ -287,13 +287,13 @@ export function OpenSource() {
               <code>
                 <span className="text-code-muted"># create the Worker, D1, KV and Vectorize index</span>
                 {"\n"}
-                <span className="text-[#ff8a4c]">$</span> npx getrewire init
+                <span className="text-[#ff8a4c]">$</span> npx getrelink init
                 {"\n"}
                 <span className="text-[#ff8a4c]">$</span> npx wrangler deploy
                 {"\n\n"}
                 <span className="text-code-muted"># attach it to your site and build the first index</span>
                 {"\n"}
-                <span className="text-[#ff8a4c]">$</span> npx getrewire connect example.com
+                <span className="text-[#ff8a4c]">$</span> npx getrelink connect example.com
                 {"\n"}
                 <span className="text-[#45d39c]">✓</span> route example.com/* attached
                 {"\n"}
@@ -333,10 +333,10 @@ export function Compare() {
         <SectionHeading
           id="compare-title"
           eyebrow="Compare"
-          title="Where Rewire fits next to Oh Dear and Dub"
+          title="Where Relink fits next to Oh Dear and Dub"
           lede={
             <>
-              Oh Dear tells you something broke. Dub manages the links you create. Rewire rescues the links you did not know were
+              Oh Dear tells you something broke. Dub manages the links you create. Relink rescues the links you did not know were
               broken. They are good products; we are not trying to replace them.
             </>
           }
@@ -344,14 +344,14 @@ export function Compare() {
         <p className="mt-8 text-xs text-muted sm:hidden">Swipe the table sideways to see Oh Dear and Dub.</p>
         <div className="relative mt-3 overflow-x-auto sm:mt-10 rounded-2xl border border-line">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
-            <caption className="sr-only">Feature comparison of Rewire (planned), Oh Dear and Dub</caption>
+            <caption className="sr-only">Feature comparison of Relink (planned), Oh Dear and Dub</caption>
             <thead>
               <tr className="border-b border-line bg-bg">
                 <th scope="col" className="sticky left-0 z-10 w-36 bg-bg px-4 py-3.5 font-medium text-muted sm:static sm:w-auto">
                   <span className="sr-only">Capability</span>
                 </th>
                 <th scope="col" className="px-4 py-3.5 font-display text-base font-bold">
-                  Rewire <span className="font-sans text-xs font-medium text-muted">(planned)</span>
+                  Relink <span className="font-sans text-xs font-medium text-muted">(planned)</span>
                 </th>
                 <th scope="col" className="px-4 py-3.5 font-display text-base font-bold">Oh Dear</th>
                 <th scope="col" className="px-4 py-3.5 font-display text-base font-bold">Dub</th>
@@ -364,7 +364,7 @@ export function Compare() {
                     {r.row}
                   </th>
                   <td className="bg-fixed-soft/40 px-4 py-3">
-                    <CellValue value={r.rewire} strong />
+                    <CellValue value={r.relink} strong />
                   </td>
                   <td className="px-4 py-3">
                     <CellValue value={r.ohdear} />
@@ -378,8 +378,8 @@ export function Compare() {
           </table>
         </div>
         <p className="mt-4 text-xs leading-relaxed text-muted">
-          Rewire column describes the planned product. Oh Dear and Dub details from ohdear.app/pricing, dub.co/pricing and Dub&apos;s
-          GitHub README, checked 1 November 2026. Oh Dear also offers DNS, cron, port and Lighthouse checks and status pages that Rewire
+          Relink column describes the planned product. Oh Dear and Dub details from ohdear.app/pricing, dub.co/pricing and Dub&apos;s
+          GitHub README, checked 1 November 2026. Oh Dear also offers DNS, cron, port and Lighthouse checks and status pages that Relink
           does not plan to match.
         </p>
       </div>

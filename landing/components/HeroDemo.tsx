@@ -91,7 +91,7 @@ export function HeroDemo() {
             <span className="size-2.5 rounded-full bg-white/15" />
             <span className="size-2.5 rounded-full bg-white/15" />
           </div>
-          <p className="truncate font-mono text-xs text-code-muted">Rewire edge worker · example.com</p>
+          <p className="truncate font-mono text-xs text-code-muted">Relink edge worker · example.com</p>
           <button
             type="button"
             onClick={() => setUserPaused((p) => !p)}

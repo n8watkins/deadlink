@@ -3,7 +3,7 @@ import { LegalPage } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Terms",
-  description: "Terms for the Rewire website while the product is in development.",
+  description: "Terms for the Relink website while the product is in development.",
   alternates: { canonical: "/terms" },
 };
 
@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <LegalPage title="Terms" updated="1 November 2026">
       <p>
-        These placeholder terms cover this website while Rewire is in development. Full terms of service will be published before any
+        These placeholder terms cover this website while Relink is in development. Full terms of service will be published before any
         paid plan or hosted account exists.
       </p>
       <h2>Nothing is for sale yet</h2>
@@ -21,7 +21,7 @@ export default function TermsPage() {
       </p>
       <h2>Open source</h2>
       <p>
-        The Rewire core will be released under the GNU Affero General Public License v3.0, and client libraries and plugins under the
+        The Relink core will be released under the GNU Affero General Public License v3.0, and client libraries and plugins under the
         MIT License. The license file in the repository is authoritative once published.
       </p>
       <h2>Comparisons</h2>
