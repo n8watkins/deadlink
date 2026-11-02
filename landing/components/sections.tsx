@@ -311,14 +311,14 @@ export function OpenSource() {
 function CellValue({ value, strong }: { value: Cell; strong?: boolean }) {
   if (value === true)
     return (
-      <span className="inline-flex items-center gap-1.5 text-fixed">
+      <span className="inline-flex items-center gap-1.5 align-middle text-fixed">
         <Check className="size-4" aria-hidden="true" />
         <span className="sr-only">Yes</span>
       </span>
     );
   if (value === false)
     return (
-      <span className="inline-flex items-center text-muted/70">
+      <span className="inline-flex items-center align-middle text-muted/70">
         <Minus className="size-4" aria-hidden="true" />
         <span className="sr-only">No</span>
       </span>
