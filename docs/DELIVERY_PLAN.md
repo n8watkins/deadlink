@@ -1,7 +1,7 @@
-# Rewire: Delivery Plan
+# Relink: Delivery Plan
 
 Written 2026-11-01.
-The product is called Rewire ("deadlink" is the fallback name); the repository keeps the name `deadlink`.
+The product's working name is Relink (fallbacks in `PRODUCT.md` section 6); the repository keeps the name `deadlink`.
 Scope: how to get from today (concept, docs, landing page) to a paid hosted product with an open-source self-host edition.
 Read `PRODUCT.md` for what we are building and `GAP_ANALYSIS.md` for why we start from a clean codebase.
 Platform limits and prices quoted below must be re-checked against Cloudflare's docs when each piece is built.
@@ -10,15 +10,15 @@ Platform limits and prices quoted below must be re-checked against Cloudflare's 
 
 | Date | Decision |
 |---|---|
-| 2026-11-01 | The product name is **Rewire**. "deadlink" stays the documented fallback in case Rewire domains or trademarks do not work out. `https://getrewire.dev` is the placeholder canonical URL; it looked available but is not registered yet. |
+| 2026-11-01 | The product's working name is **Relink** ("for now"). It replaced Rewire, chosen earlier the same day; the previous candidates stay as fallbacks in order: Rewire, then deadlink. `https://getrelink.dev` is the placeholder canonical URL; it looked available but is not registered yet. The setup CLI is planned as `npx getrelink init` because the npm package `relink` is taken. |
 | 2026-11-01 | **The self-host release (M2) comes before the hosted beta (M3).** This is confirmed and no longer an open question. |
-| 2026-11-01 | The waitlist lives on n8builds.dev (`https://n8builds.dev/upcoming?interest=rewire#rewire`), where the owner builds in public; the landing page has no sign-up form of its own. |
+| 2026-11-01 | The waitlist lives on n8builds.dev (`https://n8builds.dev/upcoming?interest=relink#relink`), where the owner builds in public; the landing page has no sign-up form of its own. |
 
 ## 1. Architecture
 
 ### Shape: thin edge agent, shared backend
 
-The key design decision is to split Rewire in two.
+The key design decision is to split Relink in two.
 
 - **Edge agent**: a small Cloudflare Worker that runs on the customer's own zone, in the customer's own Cloudflare account.
 It passes every request to the origin untouched and only acts when the origin answers 404 (or a configured soft 404).
@@ -124,7 +124,7 @@ One codebase with `DEPLOYMENT_MODE=hosted|self`.
 Designed now, built in the integrations milestone:
 
 - The **match API** is the integration contract: any host or CMS can call it from its own 404 handler.
-- A **workspace API** (create site, set sitemap, read the queue, approve rules) lets a platform such as Tech for Pros provision Rewire for each of its customer sites and show the queue inside its own admin.
+- A **workspace API** (create site, set sitemap, read the queue, approve rules) lets a platform such as Tech for Pros provision Relink for each of its customer sites and show the queue inside its own admin.
 - An **embed script** renders did-you-mean suggestions inside an existing 404 page.
 - **Webhooks** (HMAC-signed) for new queue items, approvals and alerts, so a platform can surface them in its own notifications.
 - White-label options on the Team tier cover reports and the did-you-mean page.
@@ -169,7 +169,7 @@ Effort assumes one full-time developer working with AI coding assistance; ranges
 ### M2. Open-source self-host release (2 to 3 weeks)
 
 - Repository goes public under AGPL-3.0 (core) and MIT (clients).
-- `npx getrewire init` creates D1, KV, Vectorize, Queues and R2, writes `wrangler.jsonc`, deploys; plus a Deploy to Cloudflare button.
+- `npx getrelink init` creates D1, KV, Vectorize, Queues and R2, writes `wrangler.jsonc`, deploys; plus a Deploy to Cloudflare button.
 - Self-host docs from `DOCS_OUTLINE.md`: quickstart, configuration, Worker setup, security, upgrading.
 - Launch: Show HN, Cloudflare community, r/webdev and r/selfhosted; waitlist subscribers on n8builds.dev get the release email.
 - Exit: 10 external self-host installs reporting success in issues or discussions.
@@ -195,7 +195,7 @@ Effort assumes one full-time developer working with AI coding assistance; ranges
 ### M5. General availability (2 to 3 weeks after M3)
 
 - Paid tiers on, usage metering verified against invoices, dunning, upgrade and downgrade flows.
-- Domain registered and trademark checked for Rewire before GA, or fall back to deadlink (see `PRODUCT.md` section 6).
+- Domain registered and trademark checked for Relink before GA, or fall back to the next candidate (see `PRODUCT.md` section 6).
 - Support process, incident runbook, backups and restore drill.
 
 Indicative total: about 17 to 25 weeks from M0 to GA for one developer; M4 overlapping M3 keeps it near the lower end.
@@ -226,7 +226,7 @@ Deliberately later: billing (no one to bill yet), short links (Dub and Bitly own
 | **Cloudflare lock-in for self-hosters** | High (by design) | Low to medium | State it plainly; integrations make the backend usable from non-Cloudflare sites; abstract stores behind interfaces so a Node or Docker port remains possible |
 | **Willingness to pay is low** (detection is free everywhere) | Medium | High | Validate with the scanner and the waitlist before billing; lead with agencies and migrations where budgets exist; keep costs near zero until then |
 | **Owner focus** (Tech for Pros is the active business) | High | Medium | Milestone gates with explicit continue or stop decisions; the integration API means work is reusable inside Tech for Pros even if the standalone product stops |
-| **Name and trademark**: Rewire domain or trademark unavailable; npm and GitHub search crowded by the unrelated `rewire` test library | Medium | Medium | Name decided (Rewire); register a domain and run a trademark search before GA, otherwise fall back to deadlink; keep the brand isolated in `lib/site.ts` and docs |
+| **Name and trademark**: Relink domain or trademark unavailable; the npm name `relink` is taken by an unrelated package ("ReLink"), so the CLI ships as `getrelink` | Medium | Medium | Working name decided (Relink); register a domain and run a trademark search before GA, otherwise fall back to the previous candidates (Rewire, then deadlink); keep the brand isolated in `lib/site.ts` and docs |
 
 ## 5. Success metrics
 
@@ -250,5 +250,5 @@ North star: **broken visits rescued per week** (caught 404s that ended on a work
 ### Decision gates
 
 - After M0: continue to M1 only if the precision gate passes; otherwise re-scope to suggestion-only and re-check the pricing story.
-- After M2: continue to the hosted beta if there are at least 10 external installs or 300 qualified sign-ups; otherwise keep Rewire as an open-source project and fold the agent into Tech for Pros as the market report originally recommended.
+- After M2: continue to the hosted beta if there are at least 10 external installs or 300 qualified sign-ups; otherwise keep Relink as an open-source project and fold the agent into Tech for Pros as the market report originally recommended.
 - After M3: switch on billing if activation is at least 40% and at least five beta users say they would pay at the planned price.

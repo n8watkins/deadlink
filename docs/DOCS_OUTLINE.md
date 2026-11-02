@@ -1,7 +1,7 @@
-# Rewire: Public Documentation Outline
+# Relink: Public Documentation Outline
 
 Written 2026-11-01.
-The product is called Rewire (decided 2026-11-01; "deadlink" is the fallback name, see `PRODUCT.md` section 6).
+The product's working name is Relink (decided 2026-11-01; fallbacks in `PRODUCT.md` section 6).
 This is the planned structure of the public docs site.
 Nothing here is written yet; each page has a one-line description of what it must answer.
 Pages marked (MVP) ship with the first milestone; the rest ship with the feature they document.
@@ -10,7 +10,7 @@ Pages marked (MVP) ship with the first milestone; the rest ship with the feature
 
 | Page | Description |
 |---|---|
-| Introduction (MVP) | What Rewire does, the never-redirect-for-revenue principle, and how hosted and self-host differ. |
+| Introduction (MVP) | What Relink does, the never-redirect-for-revenue principle, and how hosted and self-host differ. |
 | How it works (MVP) | The request path: origin 404, match against your content index, redirect or did-you-mean page, approval queue. |
 | Quickstart: hosted (MVP) | Sign up, add a site, connect Cloudflare, wait for the first index, and see your first caught 404 in about ten minutes. |
 | Quickstart: self-host (MVP) | Clone, configure `wrangler.jsonc`, create the Cloudflare resources with one command, deploy, open the dashboard. |
@@ -21,7 +21,7 @@ Pages marked (MVP) ship with the first milestone; the rest ship with the feature
 | Page | Description |
 |---|---|
 | Requirements | Cloudflare plan, proxied DNS, which products are used (Workers, KV, D1, Vectorize, Workers AI, Queues, R2) and expected cost. |
-| Install with the setup CLI | What the planned `npx getrewire init` creates, and how to do every step by hand instead. |
+| Install with the setup CLI | What the planned `npx getrelink init` creates, and how to do every step by hand instead. |
 | Configuration reference | Every variable and binding in `wrangler.jsonc`, with defaults and safe values. |
 | Dashboard and admin access | Protecting the dashboard with Cloudflare Access or the built-in single-admin login. |
 | Email and alerts | Wiring Resend, Email Workers or SMTP for reports and alerts. |
@@ -69,7 +69,7 @@ Pages marked (MVP) ship with the first milestone; the rest ship with the feature
 
 | Page | Description |
 |---|---|
-| Cloudflare (MVP) | One-click deploy, permissions requested, and removing Rewire cleanly. |
+| Cloudflare (MVP) | One-click deploy, permissions requested, and removing Relink cleanly. |
 | Next.js | Middleware and `not-found.tsx` helpers that call the match API and redirect server-side. |
 | WordPress | Installing the plugin, how it hooks the 404 template, and outbound link repair in posts. |
 | Embed script | Adding did-you-mean suggestions to any existing 404 page with one script tag. |

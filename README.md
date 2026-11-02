@@ -1,12 +1,12 @@
-# Rewire
+# Relink
 
 **The open-source 404 safety net.**
-Rewire catches broken links the moment a visitor hits them, sends them to the page they meant using your own site's content, and turns every fix into a permanent redirect with one click.
+Relink catches broken links the moment a visitor hits them, sends them to the page they meant using your own site's content, and turns every fix into a permanent redirect with one click.
 
 > Status (November 2026): relaunch concept.
 > The product described here is not built yet.
 > This repository currently holds the product definition, the plan, a landing page, and the 2025 code kept for reference only.
-> The product was renamed from deadlink to Rewire on 2026-11-01; "deadlink" stays the fallback name, and the repository keeps its old name.
+> Relink is the working name for the relaunch of deadlink, decided 2026-11-01; the repository keeps its old name.
 > The self-host release ships before the hosted beta.
 
 ## What it will do
@@ -18,7 +18,7 @@ Rewire catches broken links the moment a visitor hits them, sends them to the pa
 - **Monitoring**: a free "Is your site broken?" scanner, scheduled crawls, basic uptime and certificate alerts, weekly reports.
 - **Open source and self-hostable** on your own Cloudflare account, with paid hosted tiers for convenience, scale and support.
 
-Rewire never redirects visitors anywhere except the closest equivalent page on the same site, or an archived copy of the page they asked for.
+Relink never redirects visitors anywhere except the closest equivalent page on the same site, or an archived copy of the page they asked for.
 
 ## Documents
 
@@ -44,8 +44,8 @@ npm run lint
 
 Screenshots: [desktop](docs/screenshots/landing-desktop-fold.png), [desktop full page](docs/screenshots/landing-desktop-full.png), [desktop dark](docs/screenshots/landing-desktop-dark-fold.png), [mobile](docs/screenshots/landing-mobile-fold.png), [404 page](docs/screenshots/landing-mobile-404.png).
 
-There is no sign-up form on the landing page: every waitlist call to action links to [n8builds.dev/upcoming](https://n8builds.dev/upcoming?interest=rewire#rewire), where the owner builds in public.
-The placeholder canonical URL is `https://getrewire.dev`, which is not registered yet.
+There is no sign-up form on the landing page: every waitlist call to action links to [n8builds.dev/upcoming](https://n8builds.dev/upcoming?interest=relink#relink), where the owner builds in public.
+The placeholder canonical URL is `https://getrelink.dev`, which is not registered yet.
 See [`landing/README.md`](landing/README.md).
 
 ## Legacy code (reference only)
