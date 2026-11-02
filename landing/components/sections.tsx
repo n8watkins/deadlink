@@ -1,7 +1,7 @@
 import { ArrowRight, Check, Cloud, GitBranch, Lock, Minus, Radar, ScanSearch, ShieldCheck } from "lucide-react";
 import { HeroDemo } from "./HeroDemo";
-import { WaitlistForm } from "./WaitlistForm";
 import { comparison, faqs, featureGroups, statusHelp, steps, tiers, type Cell, type Status } from "@/lib/content";
+import { site } from "@/lib/site";
 
 function SectionHeading({
   eyebrow,
@@ -48,24 +48,26 @@ export function Hero() {
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-20 pt-14 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-28 lg:pt-20">
         <div>
-          <p className="inline-flex flex-wrap items-center gap-2 rounded-full border border-line-strong bg-surface/70 px-3 py-1 text-xs font-medium text-muted">
-            <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
-            Open source · In development · Early access soon
+          <p className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/70 px-3 py-1 text-xs font-medium text-muted">
+            <span className="size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            <span>
+              Open source · In development · Self-host <span className="hidden sm:inline">release </span>first
+            </span>
           </p>
           <h1 id="hero-title" className="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-[3.75rem]">
             Catch every 404.{" "}
             <span className="text-fixed">Send visitors where they meant to go.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty">
-            deadlink sits at the edge of your site, catches broken links the moment someone hits them, and finds the right page using
+            Rewire sits at the edge of your site, catches broken links the moment someone hits them, and finds the right page using
             your own content. You approve each fix with one click, and it becomes a permanent redirect.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#early-access"
+              href={site.waitlistUrl}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-ink px-6 text-base font-semibold text-bg transition hover:opacity-90"
             >
-              Get early access
+              Join the waitlist
               <ArrowRight className="size-4" aria-hidden="true" />
             </a>
             <a
@@ -103,7 +105,7 @@ export function HowItWorks() {
           id="how-title"
           eyebrow="How it works"
           title="A safety net, not another report"
-          lede="Crawlers tell you what broke last week. deadlink fixes the visit that is breaking right now, then asks you to confirm the fix."
+          lede="Crawlers tell you what broke last week. Rewire fixes the visit that is breaking right now, then asks you to confirm the fix."
         />
         <ol className="mt-12 grid gap-5 md:grid-cols-3">
           {steps.map((s, i) => (
@@ -119,7 +121,7 @@ export function HowItWorks() {
           ))}
         </ol>
         <div className="mt-6 grid gap-4 rounded-2xl border border-line bg-bg p-6 font-mono text-sm sm:grid-cols-3">
-          <Flow tone="broken" label="Without deadlink" text="Visitor hits /old-pricing, sees your 404 page, leaves." />
+          <Flow tone="broken" label="Without Rewire" text="Visitor hits /old-pricing, sees your 404 page, leaves." />
           <Flow tone="pending" label="Low confidence" text="Did-you-mean page with the 3 best matches, still an honest 404." />
           <Flow tone="fixed" label="High confidence" text="Redirect to /pricing now, permanent 301 after you approve." />
         </div>
@@ -285,13 +287,13 @@ export function OpenSource() {
               <code>
                 <span className="text-code-muted"># create the Worker, D1, KV and Vectorize index</span>
                 {"\n"}
-                <span className="text-[#ff8a4c]">$</span> npx deadlink init
+                <span className="text-[#ff8a4c]">$</span> npx getrewire init
                 {"\n"}
                 <span className="text-[#ff8a4c]">$</span> npx wrangler deploy
                 {"\n\n"}
                 <span className="text-code-muted"># attach it to your site and build the first index</span>
                 {"\n"}
-                <span className="text-[#ff8a4c]">$</span> npx deadlink connect example.com
+                <span className="text-[#ff8a4c]">$</span> npx getrewire connect example.com
                 {"\n"}
                 <span className="text-[#45d39c]">✓</span> route example.com/* attached
                 {"\n"}
@@ -331,10 +333,10 @@ export function Compare() {
         <SectionHeading
           id="compare-title"
           eyebrow="Compare"
-          title="Where deadlink fits next to Oh Dear and Dub"
+          title="Where Rewire fits next to Oh Dear and Dub"
           lede={
             <>
-              Oh Dear tells you something broke. Dub manages the links you create. deadlink rescues the links you did not know were
+              Oh Dear tells you something broke. Dub manages the links you create. Rewire rescues the links you did not know were
               broken. They are good products; we are not trying to replace them.
             </>
           }
@@ -342,14 +344,14 @@ export function Compare() {
         <p className="mt-8 text-xs text-muted sm:hidden">Swipe the table sideways to see Oh Dear and Dub.</p>
         <div className="relative mt-3 overflow-x-auto sm:mt-10 rounded-2xl border border-line">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
-            <caption className="sr-only">Feature comparison of deadlink (planned), Oh Dear and Dub</caption>
+            <caption className="sr-only">Feature comparison of Rewire (planned), Oh Dear and Dub</caption>
             <thead>
               <tr className="border-b border-line bg-bg">
                 <th scope="col" className="sticky left-0 z-10 w-36 bg-bg px-4 py-3.5 font-medium text-muted sm:static sm:w-auto">
                   <span className="sr-only">Capability</span>
                 </th>
                 <th scope="col" className="px-4 py-3.5 font-display text-base font-bold">
-                  deadlink <span className="font-sans text-xs font-medium text-muted">(planned)</span>
+                  Rewire <span className="font-sans text-xs font-medium text-muted">(planned)</span>
                 </th>
                 <th scope="col" className="px-4 py-3.5 font-display text-base font-bold">Oh Dear</th>
                 <th scope="col" className="px-4 py-3.5 font-display text-base font-bold">Dub</th>
@@ -362,7 +364,7 @@ export function Compare() {
                     {r.row}
                   </th>
                   <td className="bg-fixed-soft/40 px-4 py-3">
-                    <CellValue value={r.deadlink} strong />
+                    <CellValue value={r.rewire} strong />
                   </td>
                   <td className="px-4 py-3">
                     <CellValue value={r.ohdear} />
@@ -376,8 +378,8 @@ export function Compare() {
           </table>
         </div>
         <p className="mt-4 text-xs leading-relaxed text-muted">
-          deadlink column describes the planned product. Oh Dear and Dub details from ohdear.app/pricing, dub.co/pricing and Dub&apos;s
-          GitHub README, checked 1 November 2026. Oh Dear also offers DNS, cron, port and Lighthouse checks and status pages that deadlink
+          Rewire column describes the planned product. Oh Dear and Dub details from ohdear.app/pricing, dub.co/pricing and Dub&apos;s
+          GitHub README, checked 1 November 2026. Oh Dear also offers DNS, cron, port and Lighthouse checks and status pages that Rewire
           does not plan to match.
         </p>
       </div>
@@ -397,7 +399,7 @@ export function Pricing() {
         />
         <p className="mt-6 inline-flex items-center gap-2 rounded-xl border border-pending/30 bg-pending-soft px-3.5 py-2 text-sm text-ink">
           <Radar className="size-4 text-pending" aria-hidden="true" />
-          Planned pricing. Nothing is billable today, and early access will be free.
+          Planned pricing. Nothing is billable today. Self-host ships first and stays free; the hosted beta will be free too.
         </p>
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {tiers.map((t) => (
@@ -424,10 +426,10 @@ export function Pricing() {
               </ul>
               <div className="mt-auto pt-7">
                 <a
-                  href="#early-access"
+                  href={site.waitlistUrl}
                   className={`inline-flex h-10 w-full items-center justify-center rounded-xl text-sm font-semibold transition ${t.highlight ? "bg-ink text-bg hover:opacity-90" : "border border-line-strong text-ink hover:border-ink"}`}
                 >
-                  {t.name === "Self-host" ? "Get notified at release" : "Join early access"}
+                  {t.name === "Self-host" ? "Get notified at release" : "Join the waitlist"}
                 </a>
               </div>
             </li>
@@ -463,7 +465,6 @@ export function FAQ() {
 }
 
 export function EarlyAccess() {
-  const storageReady = Boolean(process.env.WAITLIST_WEBHOOK_URL);
   return (
     <section aria-labelledby="early-title" id="early-access" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-24">
@@ -474,11 +475,38 @@ export function EarlyAccess() {
               Be first to put a safety net under your links
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
-              The first release covers one site on Cloudflare: the edge Worker, matching, the did-you-mean page, the approval queue and
-              the free scanner. Early access will be free.
+              The self-host release comes first: one site on your own Cloudflare account with the edge Worker, matching, the did-you-mean
+              page, the approval queue and the free scanner. The hosted beta follows, free while it lasts.
             </p>
           </div>
-          <WaitlistForm storageReady={storageReady} />
+          <div className="lg:justify-self-end">
+            <ol className="space-y-3 text-sm">
+              {[
+                ["1", "Self-host release", "Open source, on your Cloudflare account"],
+                ["2", "Hosted beta", "We run it for you, free during the beta"],
+              ].map(([n, title, body]) => (
+                <li key={n} className="flex items-start gap-3">
+                  <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-line-strong font-mono text-xs font-semibold text-accent">
+                    {n}
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-ink">{title}</span>
+                    <span className="text-muted">{body}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <a
+              href={site.waitlistUrl}
+              className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-ink px-6 text-base font-semibold text-bg transition hover:opacity-90 sm:w-auto"
+            >
+              Join the waitlist
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+            <p className="mt-3 text-sm text-muted">
+              Join the waitlist on n8builds.dev, where I build in public. One email when each release is ready.
+            </p>
+          </div>
         </div>
       </div>
     </section>

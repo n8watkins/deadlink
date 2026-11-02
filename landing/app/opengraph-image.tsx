@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "deadlink: catch every 404 and send visitors where they meant to go";
+export const alt = "Rewire: catch every 404 and send visitors where they meant to go";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,7 +29,7 @@ export default function OpengraphImage() {
               background: "#ff8a4c",
             }}
           />
-          deadlink
+          Rewire
           <div
             style={{
               marginLeft: 16,
@@ -41,7 +41,7 @@ export default function OpengraphImage() {
               padding: "6px 16px",
             }}
           >
-            open source · early access
+            open source · self-host first
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

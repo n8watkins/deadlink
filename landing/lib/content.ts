@@ -13,18 +13,18 @@ export const statusHelp: Record<Status, string> = {
 
 export const steps = [
   {
-    title: "Put deadlink in front of your site",
+    title: "Put Rewire in front of your site",
     body: "Add the Worker to your Cloudflare zone with one click, or run it on your own account. Normal requests pass straight through to your site.",
     detail: "Not on Cloudflare? Next.js and WordPress integrations will call the same match API.",
   },
   {
     title: "It learns your site",
-    body: "deadlink reads your sitemap and internal links, then builds an index of every live page from its URL, title and headings.",
+    body: "Rewire reads your sitemap and internal links, then builds an index of every live page from its URL, title and headings.",
     detail: "The index lives in Cloudflare Vectorize and refreshes when your site changes.",
   },
   {
     title: "Every 404 gets a second chance",
-    body: "When a visitor hits a missing page, deadlink finds the page they meant. Confident matches redirect; the rest get a helpful \"did you mean\" page.",
+    body: "When a visitor hits a missing page, Rewire finds the page they meant. Confident matches redirect; the rest get a helpful \"did you mean\" page.",
     detail: "Each match waits in your approval queue. One click turns it into a permanent 301.",
   },
 ] as const;
@@ -73,7 +73,7 @@ export const featureGroups: FeatureGroup[] = [
   {
     id: "link-rot",
     title: "Link rot repair",
-    lede: "The pages you link to disappear too. deadlink finds them and proposes a fix.",
+    lede: "The pages you link to disappear too. Rewire finds them and proposes a fix.",
     features: [
       {
         title: "Outbound link checks",
@@ -82,7 +82,7 @@ export const featureGroups: FeatureGroup[] = [
       },
       {
         title: "Wayback Machine snapshots",
-        body: "For a dead outbound link, deadlink proposes the closest archived copy from the Internet Archive.",
+        body: "For a dead outbound link, Rewire proposes the closest archived copy from the Internet Archive.",
         status: "Beta",
       },
       {
@@ -153,7 +153,7 @@ export const featureGroups: FeatureGroup[] = [
       },
       {
         title: "REST API and match endpoint",
-        body: "Ask deadlink for the best page for any missing path, from any stack.",
+        body: "Ask Rewire for the best page for any missing path, from any stack.",
         status: "Beta",
       },
       {
@@ -166,19 +166,19 @@ export const featureGroups: FeatureGroup[] = [
 ];
 
 export type Cell = boolean | string;
-export const comparison: { row: string; deadlink: Cell; ohdear: Cell; dub: Cell }[] = [
-  { row: "Open source", deadlink: "AGPL-3.0", ohdear: false, dub: "AGPL-3.0 core" },
-  { row: "Self-hostable", deadlink: true, ohdear: false, dub: true },
-  { row: "Catches 404s live and fixes them", deadlink: true, ohdear: false, dub: false },
-  { row: "Matches a missing URL to the right page", deadlink: true, ohdear: false, dub: false },
-  { row: "Approval queue for fixes", deadlink: true, ohdear: false, dub: false },
-  { row: "Broken link crawl", deadlink: true, ohdear: true, dub: false },
-  { row: "Outbound link repair via Wayback", deadlink: true, ohdear: false, dub: false },
-  { row: "Migration redirect map", deadlink: true, ohdear: false, dub: false },
-  { row: "Uptime and SSL monitoring", deadlink: "Basic", ohdear: "Extensive", dub: false },
-  { row: "Short links and conversion analytics", deadlink: "Basic rules", ohdear: false, dub: "Core strength" },
-  { row: "Free plan", deadlink: true, ohdear: "10-day trial", dub: "14-day trial" },
-  { row: "Entry price per month", deadlink: "$12 (planned)", ohdear: "$17, 2 sites", dub: "$81" },
+export const comparison: { row: string; rewire: Cell; ohdear: Cell; dub: Cell }[] = [
+  { row: "Open source", rewire: "AGPL-3.0", ohdear: false, dub: "AGPL-3.0 core" },
+  { row: "Self-hostable", rewire: true, ohdear: false, dub: true },
+  { row: "Catches 404s live and fixes them", rewire: true, ohdear: false, dub: false },
+  { row: "Matches a missing URL to the right page", rewire: true, ohdear: false, dub: false },
+  { row: "Approval queue for fixes", rewire: true, ohdear: false, dub: false },
+  { row: "Broken link crawl", rewire: true, ohdear: true, dub: false },
+  { row: "Outbound link repair via Wayback", rewire: true, ohdear: false, dub: false },
+  { row: "Migration redirect map", rewire: true, ohdear: false, dub: false },
+  { row: "Uptime and SSL monitoring", rewire: "Basic", ohdear: "Extensive", dub: false },
+  { row: "Short links and conversion analytics", rewire: "Basic rules", ohdear: false, dub: "Core strength" },
+  { row: "Free plan", rewire: true, ohdear: "10-day trial", dub: "14-day trial" },
+  { row: "Entry price per month", rewire: "$12 (planned)", ohdear: "$17, 2 sites", dub: "$81" },
 ];
 
 export const tiers = [
@@ -246,12 +246,16 @@ export const tiers = [
 
 export const faqs = [
   {
-    q: "Can I use deadlink today?",
-    a: "Not yet. deadlink is being rebuilt from scratch and this page describes what we are building. Every feature is labelled with the release it is planned for. Join the early access list to hear when the first version is ready.",
+    q: "Can I use Rewire today?",
+    a: "Not yet. Rewire is being built from scratch and this page describes what we are building. Every feature is labelled with the release it is planned for. Join the waitlist on n8builds.dev to hear when the first version is ready.",
+  },
+  {
+    q: "What ships first: self-host or hosted?",
+    a: "Self-host. The first public release is the open-source edition you run on your own Cloudflare account. The hosted beta follows once the self-host release has proven the matching on real sites.",
   },
   {
     q: "Will automatic redirects hurt my SEO?",
-    a: "They are designed not to. deadlink only redirects to the closest equivalent page on your own site, uses a temporary redirect until you approve a match, and shows low-confidence visitors a did-you-mean page that keeps a real 404 status. It never redirects to another domain or for advertising.",
+    a: "They are designed not to. Rewire only redirects to the closest equivalent page on your own site, uses a temporary redirect until you approve a match, and shows low-confidence visitors a did-you-mean page that keeps a real 404 status. It never redirects to another domain or for advertising.",
   },
   {
     q: "Does my site need to be on Cloudflare?",
@@ -259,22 +263,22 @@ export const faqs = [
   },
   {
     q: "How is this different from Google Search Console or Rank Math?",
-    a: "Search Console reports the 404s Googlebot found, days later. Rank Math logs 404s on WordPress and waits for you to write each redirect. deadlink works on any site behind Cloudflare, catches real visitors as it happens, suggests the right page and lets you approve it in one click.",
+    a: "Search Console reports the 404s Googlebot found, days later. Rank Math logs 404s on WordPress and waits for you to write each redirect. Rewire works on any site behind Cloudflare, catches real visitors as it happens, suggests the right page and lets you approve it in one click.",
   },
   {
     q: "What does open source mean here?",
     a: "The core (Worker, matching, dashboard and API) will be published under AGPL-3.0 so you can read, run and modify it. Client libraries and plugins will be MIT. The hosted service runs the same code and charges for convenience, scale and support.",
   },
   {
-    q: "What data does deadlink collect from my visitors?",
+    q: "What data does Rewire collect from my visitors?",
     a: "For each caught 404: the requested path, referrer, a browser-or-bot classification and country. No cookies, and IP addresses are not stored. Self-hosting keeps everything in your own Cloudflare account.",
   },
   {
     q: "Is the pricing final?",
-    a: "No. The tiers on this page are our current plan and may change before launch. Nothing is billable today, and early access will be free.",
+    a: "No. The tiers on this page are our current plan and may change before launch. Nothing is billable today, and the hosted beta will be free.",
   },
   {
     q: "Do you make money from my 404 traffic?",
-    a: "No, never. The previous version of deadlink explored monetizing dead links. We dropped that idea completely: it is bad for visitors and risky for your rankings. You pay for the product, or self-host it for free.",
+    a: "No, never. Rewire grew out of an earlier project called deadlink, which explored monetizing dead links. We dropped that idea completely: it is bad for visitors and risky for your rankings. You pay for the product, or self-host it for free.",
   },
 ] as const;

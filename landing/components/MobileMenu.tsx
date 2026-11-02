@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { site } from "@/lib/site";
 
 export function MobileMenu({ links }: { links: readonly { href: string; label: string }[] }) {
   const ref = useRef<HTMLDetailsElement>(null);
@@ -51,13 +52,12 @@ export function MobileMenu({ links }: { links: readonly { href: string; label: s
             </li>
           ))}
         </ul>
-        <Link
-          href="/#early-access"
-          onClick={closeMenu}
+        <a
+          href={site.waitlistUrl}
           className="mt-1 flex h-10 items-center justify-center rounded-lg bg-ink text-sm font-semibold text-bg"
         >
-          Get early access
-        </Link>
+          Join the waitlist
+        </a>
       </div>
     </details>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { site } from "@/lib/site";
 
 const groups = [
   {
@@ -8,7 +9,7 @@ const groups = [
       { href: "/#how-it-works", label: "How it works" },
       { href: "/#features", label: "Features" },
       { href: "/#pricing", label: "Pricing" },
-      { href: "/#early-access", label: "Early access" },
+      { href: site.waitlistUrl, label: "Join the waitlist" },
     ],
   },
   {
@@ -33,7 +34,7 @@ export function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div className="max-w-xs">
-          <Link href="/" className="rounded-lg" aria-label="deadlink home">
+          <Link href="/" className="rounded-lg" aria-label="Rewire home">
             <Logo />
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -46,9 +47,15 @@ export function Footer() {
             <ul className="mt-3 space-y-2">
               {g.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-ink/85 hover:text-ink hover:underline hover:underline-offset-4">
-                    {l.label}
-                  </Link>
+                  {l.href.startsWith("http") ? (
+                    <a href={l.href} className="text-sm text-ink/85 hover:text-ink hover:underline hover:underline-offset-4">
+                      {l.label}
+                    </a>
+                  ) : (
+                    <Link href={l.href} className="text-sm text-ink/85 hover:text-ink hover:underline hover:underline-offset-4">
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -56,9 +63,17 @@ export function Footer() {
         ))}
       </div>
       <div className="border-t border-line">
-        <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-muted sm:px-6">
-          deadlink is a working name for a product in development. Competitor details on this page come from their public pricing pages, checked 1 November 2026.
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-6 text-xs text-muted sm:flex-row sm:items-start sm:justify-between sm:gap-8 sm:px-6">
+          <p className="max-w-2xl leading-relaxed">
+            Rewire is a product in development. Competitor details on this page come from their public pricing pages, checked 1&nbsp;November&nbsp;2026.
+          </p>
+          <p className="shrink-0">
+            Built by N8 at{" "}
+            <a href={site.builderUrl} className="font-medium text-ink/85 underline-offset-4 hover:text-ink hover:underline">
+              n8builds.dev
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

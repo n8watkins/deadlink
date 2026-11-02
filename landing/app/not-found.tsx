@@ -19,7 +19,7 @@ export default function NotFound() {
           This page does not exist. Ironic, we know.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          This is a small preview of the did-you-mean page deadlink will show your visitors: an honest 404 status, with the closest pages
+          This is a small preview of the did-you-mean page Rewire will show your visitors: an honest 404 status, with the closest pages
           one click away.
         </p>
         <DidYouMean />
