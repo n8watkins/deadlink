@@ -61,6 +61,7 @@ See [`landing/README.md`](landing/README.md).
 Its core loop is broken and its claims are out of date (see the market report, section 1).
 Do not deploy it; the relaunch starts from a clean codebase as described in the delivery plan.
 `api/` (the Cloudflare Worker) and `app/` (the Next.js dashboard) were previously recorded as empty submodule pointers; their 2025 source is now committed here so the reference is complete.
+The dependency manifests of `api/`, `app/` and `tests/` (`package.json` and lock files) were removed so the frozen dependencies stop raising security alerts; the last versions are in git history at [`ca520d1`](https://github.com/n8watkins/relink/tree/ca520d1f75db29630eec51d4347fc3ef4c5ea455).
 
 ## Commits and releases
 
@@ -70,8 +71,6 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org) (`fea
 Releasing is optional and only for this repository: a fork never has to tag, release or set up anything.
 The Release workflow runs only in `n8watkins/relink`, so pushing a tag in a fork publishes nothing.
 The hook only checks message format; `git commit --no-verify` skips it.
-
-The weekly security scan skips the frozen lock file of the legacy `api/` (see [`api/osv-scanner.toml`](api/osv-scanner.toml)); remove that file if `api/` is ever revived.
 
 ## License
 
