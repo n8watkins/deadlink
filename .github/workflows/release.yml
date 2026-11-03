@@ -21,7 +21,7 @@ permissions:
 jobs:
   release:
     # Only the upstream repo publishes: a fork's tags and runs release nothing.
-    if: github.repository == 'n8watkins/deadlink' # release-kit: fork guard
+    if: github.repository == 'n8watkins/relink' # release-kit: fork guard
     permissions:
       contents: write # only the kit's publish job uses it
     uses: n8watkins/release-kit/.github/workflows/release.yml@v2.5.2
