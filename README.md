@@ -68,7 +68,7 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org) (`fea
 `npm install` at the root turns on a `commit-msg` hook that checks each message, and CI checks pushed commits and pull request titles.
 
 Releasing is optional and only for this repository: a fork never has to tag, release or set up anything.
-The Release workflow runs only in `n8watkins/deadlink`, so pushing a tag in a fork publishes nothing.
+The Release workflow runs only in `n8watkins/relink`, so pushing a tag in a fork publishes nothing.
 The hook only checks message format; `git commit --no-verify` skips it.
 
 The weekly security scan skips the frozen lock file of the legacy `api/` (see [`api/osv-scanner.toml`](api/osv-scanner.toml)); remove that file if `api/` is ever revived.

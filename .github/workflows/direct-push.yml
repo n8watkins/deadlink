@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   alarm:
-    if: github.repository == 'n8watkins/deadlink' # release-kit: fork guard
+    if: github.repository == 'n8watkins/relink' # release-kit: fork guard
     permissions:
       contents: read # the pushed commits and .release.json
       pull-requests: read # which pull request each commit came from
