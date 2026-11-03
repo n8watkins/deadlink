@@ -1,8 +1,3 @@
-# deadlink: this file is the repo's own, so release-kit apply leaves it alone
-# (apply only rewrites a dependabot.yml that starts with its "# release-kit:" line).
-# It is the kit's file plus the legacy-code entry at the end; when the kit changes
-# its dependabot.yml, copy the new kit part in and keep the legacy entry.
-#
 # release-kit: a new kit release arrives as one update PR (the dev dependency and the workflow pins).
 # One multi-ecosystem group, so the npm and github-actions updates land together:
 # separate PRs would leave package.json and the workflows on different kit versions.
@@ -35,15 +30,3 @@ updates:
     multi-ecosystem-group: release-kit
     cooldown:
       exclude: ["n8watkins/release-kit*"]
-  # Legacy 2025 code (api/, app/, tests/), kept for reference only and never
-  # built or deployed (see README, "Legacy code"). Ignoring every dependency
-  # here also stops Dependabot security update PRs for these manifests
-  # (ignore applies to security updates; exclude-paths does not). Remove this
-  # entry if that code is ever revived.
-  - package-ecosystem: npm
-    directories: ["/api", "/app", "/tests"]
-    schedule:
-      interval: monthly
-    open-pull-requests-limit: 0
-    ignore:
-      - dependency-name: "*"
